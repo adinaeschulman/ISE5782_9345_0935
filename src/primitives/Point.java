@@ -5,7 +5,19 @@ package primitives;
 import java.util.Objects;
 public class Point {
     protected final Double3 xyz;
-    public Point(double x,double y,double z){
+
+    public Double3 getXyz() {
+        return xyz;
+    }
+
+    @Override
+    public String toString() {
+        return "Point{" +
+                "xyz=" + xyz +
+                '}';
+    }
+
+    public Point(double x, double y, double z){
         xyz=new Double3(x,y,z);
     }
     public Point(Double3 xyz){

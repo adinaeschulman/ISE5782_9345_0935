@@ -51,6 +51,16 @@ public class Vector extends Point {
         double d1=this.lengthSquared();
         return(v1.scale(1/d1));
     }
+    public double dotProduct(Vector vector){
+       return xyz.d1*vector.xyz.d1+xyz.d2*vector.xyz.d2+xyz.d3*vector.xyz.d3;
 
+    }
+
+    @Override
+    public String toString() {
+        return "Vector{" +
+                "xyz=" + xyz +
+                '}';
+    }
 
 }

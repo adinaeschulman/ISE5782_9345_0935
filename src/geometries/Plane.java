@@ -1,12 +1,21 @@
 package geometries;
-import primitives.Point3D;
-import primitives.Vector;
-public class Plane implements Geometry{
-    Point3D p3D;
-    Vector normal;
+import primitives.*;
+import static java.lang.System.out;
+import static primitives.Util.*;
 
-    public Plane(Point3D p3D, Vector normal) {
-        this.p3D = p3D;
-        this.normal = normal;
+public class Plane {
+    private final Point q0;
+    private final Vector normal;
+
+
+    public Point getQ0() {
+        return q0;
     }
+
+    public Vector getNormal() {
+        return normal;
+    }
+
+
+
 }

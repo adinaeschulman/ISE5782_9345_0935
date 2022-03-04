@@ -4,21 +4,21 @@ import primitives.Ray;
 import primitives.Vector;
 import primitives.Point;
 public class Cylinder extends Tube{
-   private final double hight;
+   private final double height;
 
-    public Cylinder(Ray axisRay, double radius, double hight) {
+    public Cylinder(Ray axisRay, double radius, double height) {
         super(axisRay, radius);
-        this.hight = hight;
+        this.height = height;
     }
 
-    public double getHight() {
-        return hight;
+    public double getHeight() {
+        return height;
     }
 
     @Override
     public String toString() {
         return "Cylinder{" +
-                "hight=" + hight +
+                "height=" + height +
                 '}';
     }
 

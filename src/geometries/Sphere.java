@@ -1,28 +1,33 @@
 package geometries;
-import primitives.Point3D; //really other things adina is intializing
-import  primitives.Vector; //"
+import primitives.Point;
+import primitives.Vector;
 public class Sphere implements Geometry {
-   final  point3D _center;
-    final double _radius;
+    private final Point center;
+    private final double raduius;
 
-    public Sphere(point3D _center, double _radius) {
-        this._center = _center;
-        this._radius = _radius;
+    public Sphere(Point center, double raduius) {
+        this.center = center;
+        this.raduius = raduius;
     }
 
-    public point3D get_center() {
-        return _center;
+    public Point getCenter() {
+        return center;
     }
 
-    public double get_radius() {
-        return _radius;
+    public double getRaduius() {
+        return raduius;
     }
 
     @Override
     public String toString() {
         return "Sphere{" +
-                "_center=" + _center +
-                ", _radius=" + _radius +
+                "center=" + center +
+                ", raduius=" + raduius +
                 '}';
+    }
+
+    @Override
+    public Vector getNormal(Point xyz) {
+        return null;
     }
 }

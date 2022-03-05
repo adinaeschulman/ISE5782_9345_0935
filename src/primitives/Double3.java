@@ -7,7 +7,7 @@ import static primitives.Util.*;
 
 /**
  * This class will serve all primitive classes based on three numbers
- *
+ * point in the 3d dimention and contains an x y z
  * @author Dan Zilberstein
  */
 public class Double3 {
@@ -33,6 +33,11 @@ public class Double3 {
         this.d3 = d3;
     }
 
+    /**
+     * checking if the 2 objetct  in double3 is eql to eachother
+     * @param obj
+     * @return
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -45,11 +50,19 @@ public class Double3 {
         return isZero(d1 - other.d1) && isZero(d2 - other.d2) && isZero(d3 - other.d3);
     }
 
+    /**
+     * returns the sum off the point of 3 poarts of the point in the 3d point as a hashcode
+     * @return
+     */
     @Override
     public int hashCode() {
         return (int) Math.round(d1 + d2 + d3);
     }
 
+    /**
+     * prints the double3 point
+     * @return
+     */
     @Override
     public String toString() {
         return "(" + d1 + "," + d2 + "," + d3 + ")";

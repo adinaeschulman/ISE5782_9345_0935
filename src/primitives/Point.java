@@ -1,15 +1,12 @@
 package primitives;
-//i think i need to dd all the distance funcs
-//figure iuit the hashcode/2string story
-//ask about gets
+
 import java.util.Objects;
 public class Point {
-    protected final Double3 xyz;
+     final Double3 xyz;
 
     public Double3 getXyz() {
         return xyz;
     }
-
     @Override
     public String toString() {
         return "Point{" +
@@ -26,9 +23,8 @@ public class Point {
     public Point add(Vector vector){
         return new Point(xyz.add(vector.xyz));
     }
-    public Vector subtract(Point point){
-        return new Vector(xyz.subtract(point.xyz));
-    }
+    public Vector subtract(Point point){return new Vector(xyz.subtract(point.xyz));}
+
     @Override
     public boolean equals(Object o){
         if(this==o)
@@ -41,6 +37,19 @@ public class Point {
     @Override
     public int hashCode(){
         return Objects.hash(xyz);
+    }
+    public double distanceSquared(Point point){
+        final double x1=xyz.d1;
+        final double y1=xyz.d2;
+        final double z1=xyz.d3;
+        final double x2=point.xyz.d1;
+        final double y2=point.xyz.d2;
+        final double z2=point.xyz.d3;
+        return((x2-x1)*(x2-x1))+((y2-y1)*(y2-y1))+((z2-z1)*(z2-z1));
+
+    }
+    public double distance(Point point){
+        return Math.sqrt(distanceSquared(point));
     }
 
 

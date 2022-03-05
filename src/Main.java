@@ -1,7 +1,8 @@
 import primitives.*;
 import static java.lang.System.out;
 import static primitives.Util.*;
-
+//Adina Schulman 328620935
+//Shifra Wexler 211349345
 /**
  * Test program for the 1st stage
  *
@@ -17,7 +18,7 @@ public final class Main {
     public static void main(String[] args) {
 
         try { // test zero vector
-            new Vector(0, 0, 0);
+           new Vector(0, 0, 0);
             out.println("ERROR: zero vector does not throw an exception");
         } catch (Exception e) {
         }

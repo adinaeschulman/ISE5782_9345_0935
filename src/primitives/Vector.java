@@ -26,7 +26,7 @@ public class Vector extends Point {
         if(o==null|| getClass()!=o.getClass())
             return false;
         Vector vector=(Vector)o;
-        return xyz.equals(vector.xyz.d1)&&xyz.equals(vector.xyz.d2) && xyz.equals(vector.xyz.d3);
+        return xyz.equals(vector.xyz);
     }
     @Override
     //need to fix
@@ -47,9 +47,10 @@ public class Vector extends Point {
         return Math.sqrt(this.lengthSquared());
     }
     public Vector normalize(){
-        Vector v1=new Vector(this.crossProduct(this).xyz);
-        double d1=this.lengthSquared();
-        return(v1.scale(1/d1));
+
+        return new Vector(xyz.reduce(length()));
+
+
     }
     public double dotProduct(Vector vector){
        return xyz.d1*vector.xyz.d1+xyz.d2*vector.xyz.d2+xyz.d3*vector.xyz.d3;

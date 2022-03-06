@@ -77,7 +77,6 @@ public class Vector extends Point {
         Vector vector=new Vector((v.xyz.d3* xyz.d2-v.xyz.d2* xyz.d3),
                             -(v.xyz.d3* xyz.d1-v.xyz.d1* xyz.d3),
                                    (v.xyz.d2* xyz.d1-v.xyz.d1* xyz.d2));
-        if(vector.xyz.equals(Double3.ZERO)) throw new IllegalArgumentException("cannot create a vector 0");
         return vector;
     }
 

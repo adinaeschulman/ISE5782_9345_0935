@@ -1,16 +1,12 @@
 package primitives;
 
+import org.junit.jupiter.api.Test;
+
 import java.util.Objects;
 public class Point {
-     final Double3 xyz;
+    protected final Double3 xyz;
 
-    /**
-     * returns the double 3 point in point
-     * @return
-     */
-    public Double3 getXyz() {
-        return xyz;
-    }
+
 
     /**
      * prints the point
@@ -105,6 +101,11 @@ public class Point {
     public double distance(Point point){
         return Math.sqrt(distanceSquared(point));
     }
+
+
+
+
+
 
 
 }

@@ -4,9 +4,18 @@ import java.util.Objects;
 public class Point {
      final Double3 xyz;
 
+    /**
+     * returns the double 3 point in point
+     * @return
+     */
     public Double3 getXyz() {
         return xyz;
     }
+
+    /**
+     * prints the point
+     * @return
+     */
     @Override
     public String toString() {
         return "Point{" +
@@ -14,17 +23,45 @@ public class Point {
                 '}';
     }
 
+    /**
+     * constructor - intializes the point given 3 different dimensions
+     * @param x
+     * @param y
+     * @param z
+     */
     public Point(double x, double y, double z){
         xyz=new Double3(x,y,z);
     }
+
+    /**
+     * constructor given a ready point
+     * @param xyz
+     */
     public Point(Double3 xyz){
         this.xyz=xyz;
     }
+
+    /**
+     * adds the new point to a vector
+     * @param vector
+     * @return
+     */
     public Point add(Vector vector){
         return new Point(xyz.add(vector.xyz));
     }
+
+    /**
+     * substract a point from vector
+     * @param point
+     * @return
+     */
     public Vector subtract(Point point){return new Vector(xyz.subtract(point.xyz));}
 
+    /**
+     * checks if 2 points are eql tp eachother
+     * @param o
+     * @return
+     */
     @Override
     public boolean equals(Object o){
         if(this==o)
@@ -34,10 +71,21 @@ public class Point {
         Point point=(Point)o;
         return xyz.equals(point.xyz);
     }
+
+    /**
+     * retuns a hash code of a point
+     * @return
+     */
     @Override
     public int hashCode(){
         return Objects.hash(xyz);
     }
+
+    /**
+     * returns the squared distance between 2 different points
+     * @param point
+     * @return
+     */
     public double distanceSquared(Point point){
         final double x1=xyz.d1;
         final double y1=xyz.d2;
@@ -48,6 +96,12 @@ public class Point {
         return((x2-x1)*(x2-x1))+((y2-y1)*(y2-y1))+((z2-z1)*(z2-z1));
 
     }
+
+    /**
+     * returns the root of the given distance
+     * @param point
+     * @return
+     */
     public double distance(Point point){
         return Math.sqrt(distanceSquared(point));
     }

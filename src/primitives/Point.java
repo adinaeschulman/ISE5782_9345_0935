@@ -26,7 +26,9 @@ public class Point {
      * @param z
      */
     public Point(double x, double y, double z){
+
         xyz=new Double3(x,y,z);
+
     }
 
     /**

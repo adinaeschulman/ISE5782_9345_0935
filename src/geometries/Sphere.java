@@ -1,6 +1,7 @@
 package geometries;
 import primitives.Point;
 import primitives.Vector;
+//did get normal
 public class Sphere implements Geometry {
     private final Point center;
     private final double raduius;
@@ -45,11 +46,12 @@ public class Sphere implements Geometry {
 
     /**
      *
-     * @param xyz
+     * @param p
      * @return null
      */
     @Override
-    public Vector getNormal(Point xyz) {
-        return null;
+    public Vector getNormal(Point p) {
+        Vector p0_p = p.subtract(center);
+        return p0_p.normalize();
     }
 }

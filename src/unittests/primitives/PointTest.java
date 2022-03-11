@@ -1,9 +1,7 @@
 package unittests.primitives;
-
 import org.junit.jupiter.api.Test;
 import primitives.Point;
 import primitives.Vector;
-
 import static java.lang.System.out;
 import static org.junit.jupiter.api.Assertions.*;
 

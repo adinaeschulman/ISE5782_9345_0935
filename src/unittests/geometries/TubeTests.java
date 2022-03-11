@@ -13,7 +13,7 @@ public class TubeTests {
     public void testGetNormal() {
         // ============ Equivalence Partitions Tests ==============
         // TC01: There is a simple single test here
-        Tube tube = new Tube(1.0, new Ray(new Vector(0, -1, 0),new Double3(0, 0, 1)));
+        Tube tube = new Tube( new Ray(new Point(0, -1, 0),new Vector(0, 0, 1)),1.0);
 
         Vector normal = tube.getNormal(new Point(0, 0.5, 2)).normalize();
 

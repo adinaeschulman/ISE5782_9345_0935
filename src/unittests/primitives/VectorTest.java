@@ -14,10 +14,12 @@ class VectorTest {
     Vector v3 = new Vector(0, 3, -2);
     @Test
     void testAdd() {
-        assertEquals(new Vector(2,4,6),v1.add(v1), "ERROR: add function does not work proper");
-        //assertEquals(new Vector(2,4,6),v1.add(v1), "ERROR: add function does not work proper");
-///helppppppppppp
-        assertThrows(IllegalArgumentException.class, () -> v1.add(new Vector(-1,-2,-3)), "add()- not so sure what to write");
+        // ============ Equivalence Partitions Tests ==============
+        //TC01: Test that operation 'add' with vectors works correctly
+        assertEquals(new Vector(2,4,6),v1.add(v1), "ERROR: add function does not work properly");
+        // =============== Boundary Values Tests ==================
+        // TC11: test if zero vector from 'add'' throws exception
+        assertThrows(IllegalArgumentException.class, () -> v1.add(new Vector(-1,-2,-3)), "add()- whn created a  Zero vector the function dosent throw an exception ");
 
 
     }
@@ -56,14 +58,19 @@ class VectorTest {
     }
 
 
-    @Test
-    void testLengthSquared() {
-    assertEquals(14,v1.lengthSquared(),"ERROR: LenghthSquared function does not work properly");
-    }
+//    @Test
+//    void testLengthSquared() {
+//        // ============ Equivalence Partitions Tests ==============
+//        //TC01: Test that operation 'lengthSquared' with vectors works properly
+//         assertEquals(14,v1.lengthSquared(),"ERROR: LenghthSquared function does not work properly");
+//
+//    }
 
     @Test
     void testLength() {
-        assertEquals(5,new Vector(0,3,4).length(),"ERROR: length function does not work properly");
+        // ============ Equivalence Partitions Tests ==============
+        //TC01: Test that operation 'lengthSquared' with vectors works correctly
+        assertTrue(isZero(new Vector(0,3,4).length()-5),"ERROR: length function does not work properly");
     }
 
     @Test
@@ -85,16 +92,13 @@ class VectorTest {
     }
 
     @Test
-    public void testScaleEP() {
+    public void testScale() {
         // ============ Equivalence Partitions Tests ==============
         // TC01: Simple test
         assertEquals(new Vector(2, 4, 6),
                 new Vector(1, 2, 3).scale(2),
                 "Wrong vector scale");
-    }
 
-    @Test
-    public void testScaleBVA() {
         // =============== Boundary Values Tests ==================
         // TC11: test scaling to 0
         assertThrows(IllegalArgumentException.class,

@@ -1,5 +1,4 @@
 package primitives;
-import primitives.Point;
 
 import java.util.Objects;
 public class Vector extends Point {
@@ -28,7 +27,7 @@ public class Vector extends Point {
      * @param vector
      * @return
      */
-    public Vector add(Vector vector){
+    public double add(Vector vector){
         return new Vector(new Point(xyz.add(vector.xyz)).xyz);
     }
 

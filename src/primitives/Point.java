@@ -1,7 +1,5 @@
 package primitives;
 
-import org.junit.jupiter.api.Test;
-
 import java.util.Objects;
 public class Point {
     protected final Double3 xyz;
@@ -44,7 +42,7 @@ public class Point {
      * @param vector
      * @return
      */
-    public Point add(Vector vector){
+    public double add(Vector vector){
         return new Point(xyz.add(vector.xyz));
     }
 

@@ -1,8 +1,11 @@
 package geometries;
-
+//did get normal
 import primitives.Ray;
 import primitives.Vector;
 import primitives.Point;
+import static primitives.Util.alignZero;
+import static primitives.Util.isZero;
+
 public class Cylinder extends Tube{
    private final double height;
 
@@ -41,8 +44,10 @@ public class Cylinder extends Tube{
      * @param point
      * @return the normal
      */
-    @Override
+   @Override
     public Vector getNormal(Point point) {
         return super.getNormal(point);
     }
+
+
 }

@@ -1,6 +1,5 @@
 package primitives;
 import primitives.Point;
-
 import java.util.Objects;
 public class Vector extends Point {
     /**

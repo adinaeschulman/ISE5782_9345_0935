@@ -1,4 +1,5 @@
 package geometries;
+// im not sure if normal is correct
 import primitives.Point;
 import primitives.Vector;
 public class Plane  implements  Geometry{
@@ -50,7 +51,7 @@ public class Plane  implements  Geometry{
      */
 
     public Vector getNormal() {
-        return null;
+        return normal;
     }
 
 }

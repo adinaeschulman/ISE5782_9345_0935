@@ -1,6 +1,7 @@
 package geometries;
-
+//has normal from pologyn
 import primitives.Point;
+import primitives.Vector;
 
 public class Triangle extends Polygon {
     /**
@@ -20,4 +21,6 @@ public class Triangle extends Polygon {
                 ", plane=" + plane +
                 '}';
     }
+
+
 }

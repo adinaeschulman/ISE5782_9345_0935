@@ -27,6 +27,7 @@ public class Point {
 
         xyz=new Double3(x,y,z);
 
+
     }
 
     /**
@@ -35,6 +36,7 @@ public class Point {
      */
     public Point(Double3 xyz){
         this.xyz=xyz;
+
     }
 
     /**
@@ -42,7 +44,7 @@ public class Point {
      * @param vector
      * @return
      */
-    public double add(Vector vector){
+    public Point add(Vector vector){
         return new Point(xyz.add(vector.xyz));
     }
 
@@ -99,7 +101,7 @@ public class Point {
      * @return
      */
     public double distance(Point point){
-        return Math.sqrt(distanceSquared(point));
+        return  Math.sqrt(distanceSquared(point));
     }
 
 

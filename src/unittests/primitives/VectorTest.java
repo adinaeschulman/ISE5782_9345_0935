@@ -30,7 +30,7 @@ class VectorTest {
     @Test
      void testTestEquals() {
         Point p1= new Point(1,2,3);
-         assertEquals(v1,v1.equals(v1),"ERROR: Vector equals function doesn't work properly");
+         //assertEquals(v1,!v1.equals(v1),"ERROR: Vector equals function doesn't work properly");
         assertEquals (new Vector(1, 1, 1),(new Point(2, 3, 4).subtract(p1)),"ERROR: Vector equals function doesn't work properly");
 
     }
@@ -38,6 +38,7 @@ class VectorTest {
     @Test
     void testCrossProduct() {
         Vector v1 = new Vector(1, 0, 0);
+        Vector v=new Vector(1,-3,0);
 
         // ============ Equivalence Partitions Tests ==============
         Vector v2 = new Vector(0, 3, -2);
@@ -52,19 +53,19 @@ class VectorTest {
         assertTrue(isZero(vr.dotProduct(v2)), "crossProduct() result is not orthogonal to 2nd operand");
 
         // =============== Boundary Values Tests ==================
-        // TC11: test zero vector from cross-productof co-lined vectors
-        Vector v3 = new Vector(-2, -4, -6);
-        assertThrows(IllegalArgumentException.class, () -> v1.crossProduct(v3), "crossProduct() for parallel vectors does not throw an exception");
+        // TC11: test zero vector from cross-product of co-lined vectors
+        Vector v3 = new Vector(3, -9, 0);
+        assertThrows(IllegalArgumentException.class, () -> v.crossProduct(v3), "crossProduct() for parallel vectors does not throw an exception");
     }
 
 
-//    @Test
-//    void testLengthSquared() {
-//        // ============ Equivalence Partitions Tests ==============
-//        //TC01: Test that operation 'lengthSquared' with vectors works properly
-//         assertEquals(14,v1.lengthSquared(),"ERROR: LenghthSquared function does not work properly");
-//
-//    }
+   @Test
+    void testLengthSquared() {
+       // ============ Equivalence Partitions Tests ==============
+        //TC01: Test that operation 'lengthSquared' with vectors works properly
+       assertEquals(14,v1.lengthSquared(),"ERROR: LenghthSquared function does not work properly");
+
+    }
 
     @Test
     void testLength() {
@@ -87,8 +88,7 @@ class VectorTest {
     void testDotProduct() {
         assertEquals(10,new Vector(0,3,4).dotProduct(new Vector(1,2,1)),"ERROR:  DotProduct function does not work properly");
         assertEquals (0,v1.dotProduct(v3),"ERROR: dotProduct() for orthogonal vectors is not zero");
-        //if (!isZero(v1.dotProduct(v2) + 28))
-        //    out.println("ERROR: dotProduct() wrong value");
+
     }
 
     @Test

@@ -13,8 +13,16 @@ public class Plane  implements  Geometry{
      * @param p3
      */
     public Plane(Point p1, Point p2,Point p3) {
+        if(p1.equals(p2)||p2.equals(p3)||p1.equals(p3))
+            throw new IllegalArgumentException("2 of the points are the same");
+        Vector u1=p2.subtract(p1);
+        Vector u2=p3.subtract(p1);
+        if(u1.normalize().dotProduct(u2.normalize())==1)
+            throw new IllegalArgumentException("the points are on the same line");
         this.q0 = p1;
-        this.normal = null;
+        Vector N =u1.crossProduct(u2);
+        N.normalize();
+        normal = N;
     }
 
     /**

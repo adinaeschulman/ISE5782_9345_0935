@@ -1,7 +1,6 @@
 package primitives;
-import primitives.Point;
-import primitives.Vector;
-import java.util.Objects;
+
+import org.junit.jupiter.api.Test;
 
 import java.util.Objects;
 
@@ -27,11 +26,12 @@ public class Ray {
      * @param p
      * @param v
      */
-    public Ray(Double3 p,Double3 v){
-        p0=new Point(p);
-        dir=new Vector(v);
+    public Ray(Point p, Vector v){
+        p0=p;
+        dir=v;
 
     }
+
 
     /**
      * returns p0 - the initial point of the ray

@@ -51,29 +51,23 @@ public class Tube implements Geometry {
     /**
      *
      * @param p
-     * @return null
+     * calculates the normal of tube according to equation
+     * @return normal
      */
     @Override
     public Vector getNormal(Point p) {
         Point P0 = axisRay.getP0();
         Vector v = axisRay.getDir();
-
         Vector P0_P = p.subtract(P0);
-
         double t = alignZero(v.dotProduct(P0_P));
-
         if (isZero(t)) {
             return P0_P.normalize();
         }
-
         Point o = P0.add(v.scale(t));
-
         if (p.equals(o)) {
             throw new IllegalArgumentException("point cannot be on the tube axis");
         }
-
         Vector n = p.subtract(o).normalize();
-
         return n;
     }
 }

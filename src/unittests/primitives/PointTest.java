@@ -18,11 +18,7 @@ class PointTest {
         // TC01: Test that operation 'add' with points and vectors works correctly
           assertEquals(new Point(3,3,3),p1.add(new Vector(2,2,2)),"ERROR: Point + Vector does not work correctly");
         Point p = new Point(11, 22, 23);
-   /*     // =============== Boundary Values Tests ==================
-        // TC11: test checking if the operation 'add'
-        assertThrows(IllegalArgumentException.class,
-                () -> p.add(new Vector(-11, -22, -23)),
-                "ERROR: Point- add function doesn't work properly");*/
+
     }
 
     @Test
@@ -33,9 +29,7 @@ class PointTest {
         assertEquals(new Vector(1, 1, 1),new Point(12, 23, 24).subtract(p),"ERROR: Point- subtract function doesn't work properly");
     }
 
-    /**
-     * helpppppppppp
-     */
+
     @Test
     void testTestEquals() {
         Vector v=new Vector(1,1,1);
@@ -57,6 +51,8 @@ class PointTest {
 
     void testDistanceSquared() {
         Point point = new Point(0.5, 0, -100);
+        // ============ Equivalence Partitions Tests ==============
+        // TC01: Test that operation 'testDistanceSquared 'works correctly
         assertEquals(0.25,point.distanceSquared(new Point(0,0,-100)),
                 "Erorr! the distanceSquared is incorrect");
     }
@@ -64,6 +60,8 @@ class PointTest {
     @Test
     void testDistance() {
         Point point = new Point(0.5, 0, -100);
+        // ============ Equivalence Partitions Tests ==============
+        // TC01: Test that operation 'testDistance 'works correctly
         assertEquals(0.5, point.distance(new Point(0,0,-100)),
                 "Erorr! the distance is incorrect");
     }

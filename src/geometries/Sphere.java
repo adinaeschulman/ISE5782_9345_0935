@@ -47,7 +47,8 @@ public class Sphere implements Geometry {
     /**
      *
      * @param p
-     * @return null
+     * calculates normal according ot equation
+     * @return normal
      */
     @Override
     public Vector getNormal(Point p) {

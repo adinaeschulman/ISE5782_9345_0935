@@ -8,6 +8,7 @@ public class Plane  implements  Geometry{
 
     /**
      * constructer for plane
+     * calculates normal according to equation
      * @param p1
      * @param p2
      * @param p3
@@ -21,8 +22,8 @@ public class Plane  implements  Geometry{
             throw new IllegalArgumentException("the points are on the same line");
         this.q0 = p1;
         Vector N =u1.crossProduct(u2);
-        N.normalize();
-        normal = N;
+       normal= N.normalize();
+
     }
 
     /**
@@ -54,7 +55,7 @@ public class Plane  implements  Geometry{
     }
 
     /**
-     * returns null
+     * returns normal
      * @return
      */
 

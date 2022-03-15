@@ -3,6 +3,8 @@ import primitives.Point;
 import primitives.Ray;
 import primitives.Vector;
 // did get normal
+import java.util.List;
+
 import static primitives.Util.alignZero;
 import static primitives.Util.isZero;
 
@@ -69,5 +71,10 @@ public class Tube implements Geometry {
         }
         Vector n = p.subtract(o).normalize();
         return n;
+    }
+
+    @Override
+    public List<Point> findIntersections(Ray ray) {
+        return null;
     }
 }

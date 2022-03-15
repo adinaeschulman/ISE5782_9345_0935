@@ -8,13 +8,8 @@ import primitives.Double3;
 import primitives.Point;
 import primitives.Ray;
 import primitives.Vector;
-
 import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
-
-
-
 class PlaneTest {
     @Test
     public void testConstructor() {
@@ -48,5 +43,11 @@ class PlaneTest {
         assertEquals(new Vector(sqrt3, sqrt3, sqrt3), pl.getNormal(new Point(0, 0, 1)), "Bad normal to plane");
     }
 
-
+    @Test
+    void testFindIntersections() {
+        Ray ray=new Ray(new Point(1,0,0),new Vector(2,2,2));
+        Plane plane=new Plane(new Point(1,0,0),new Point(0,1,0),new Point(0,0,1));
+       assertNull(plane.findIntersections(ray),"write somthing....");
+       assertEquals(List.of(new Point(1,1,1)),plane.findIntersections(ray), "Write somthing...");
+    }
 }

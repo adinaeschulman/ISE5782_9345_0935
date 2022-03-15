@@ -1,9 +1,11 @@
 package geometries;
 import primitives.*;
-import static java.lang.System.out;
-import static primitives.Util.*;
+
+import java.util.List;
+
 //interface
-public interface Geometry {
+public interface Geometry extends Intersectable {
     //function that calculates a normal
     public Vector getNormal(Point xyz);
+
 }

@@ -1,7 +1,11 @@
 package geometries;
 // im not sure if normal is correct
 import primitives.Point;
+import primitives.Ray;
 import primitives.Vector;
+
+import java.util.List;
+
 public class Plane  implements  Geometry{
  final private Point q0;
  final private Vector normal;
@@ -53,14 +57,18 @@ public class Plane  implements  Geometry{
     public Vector getNormal(Point point) {
         return normal;
     }
-
     /**
-     * returns normal
-     * @return
+     * getter of _normal field
+     * @deprecated use {@link Plane#getNormal()} with null values as parameter
+     * @return refrence to normal vector of the plane
      */
-
+    @Deprecated
     public Vector getNormal() {
         return normal;
     }
 
+    @Override
+    public List<Point> findIntersections(Ray ray) {
+        return null;
+    }
 }

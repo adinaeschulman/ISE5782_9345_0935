@@ -86,6 +86,7 @@ class VectorTest {
 
     @Test
     void testDotProduct() {
+
         assertEquals(10,new Vector(0,3,4).dotProduct(new Vector(1,2,1)),"ERROR:  DotProduct function does not work properly");
         assertEquals (0,v1.dotProduct(v3),"ERROR: dotProduct() for orthogonal vectors is not zero");
 

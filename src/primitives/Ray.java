@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Objects;
 
+import static primitives.Util.isZero;
+
 public class Ray {
     private Point p0;
     private Vector dir;
@@ -86,5 +88,17 @@ public class Ray {
     //need to fix
     public int hashCode(){
         return Objects.hash(p0 );
+    }
+    /**
+     * Get point at specific distance in the ray direction
+     * @param t distance for reaching new Point
+     * @return new {@link Point}
+     */
+    public Point getPoint(double t)
+    {
+        if(isZero(t)){
+            throw new IllegalArgumentException("t equal 0 cause illegal vector ZERO");
+        }
+        return p0.add(dir.scale(t));
     }
 }

@@ -103,11 +103,19 @@ public class Point {
     public double distance(Point point){
         return  Math.sqrt(distanceSquared(point));
     }
+    /**
+     * get for x
+     * @return double for x
+     */
+    public double getX() {
+        return xyz.d1;
+    }
 
-
-
-
-
-
-
+    /**
+     * get for y
+     * @return double for y
+     */
+    public double getY() {
+        return xyz.d2;
+    }
 }

@@ -1,7 +1,9 @@
 package geometries;
 //has normal from pologyn
 import primitives.Point;
+import primitives.Ray;
 import primitives.Vector;
+import java.util.List;
 
 public class Triangle extends Polygon {
     /**
@@ -21,6 +23,9 @@ public class Triangle extends Polygon {
                 ", plane=" + plane +
                 '}';
     }
-
+    @Override
+    public List<Point> findIntersections(Ray ray) {
+        return super.findIntersections(ray);
+    }
 
 }

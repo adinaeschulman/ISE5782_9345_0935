@@ -1,5 +1,3 @@
-
-
 package unittests.geometries;
 import geometries.Plane;
 import geometries.Polygon;

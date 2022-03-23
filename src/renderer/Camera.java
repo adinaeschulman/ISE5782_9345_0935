@@ -32,7 +32,31 @@ public class Camera {
         this.distance=distance;
         return this;
     }
+
     public Ray constructRay(int nX, int nY, int j, int i){
-        return null;
+        Point Pc = position.add(vTo.scale(distance));
+
+        double Rx = width / nX;
+        double Ry = height / nY;
+
+        Point Pij = Pc;
+
+        double Xj = (j - (nX - 1) / 2d) * Rx;
+        double Yi = -(i - (nY - 1) / 2d) * Ry;
+
+        if (isZero(Xj) && isZero(Yi)) {
+            return new Ray(position, Pij.subtract(position));
+        }
+        if (isZero(Xj)) {
+            Pij = Pij.add(vUp.scale(Yi));
+            return new Ray(position, Pij.subtract(position));
+        }
+        if (isZero(Yi)) {
+            Pij = Pij.add(vRight.scale(Xj));
+            return new Ray(position, Pij.subtract(position));
+        }
+
+        Pij = Pij.add(vRight.scale(Xj).add(vUp.scale(Yi)));
+        return new Ray(position, Pij.subtract(position));
     }
 }

@@ -58,5 +58,8 @@ public class Camera {
 
         Pij = Pij.add(vRight.scale(Xj).add(vUp.scale(Yi)));
         return new Ray(position, Pij.subtract(position));
+
+
     }
+
 }

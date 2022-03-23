@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
         /**
          * Unit tests for geometries.Geometries class
-         * @author Eliana Grajower & Mikhal Levy
+         * @author Adina Schulman & Shifra Wexler
          */
         class GeometriesTest {
             Geometries geometries = new Geometries(

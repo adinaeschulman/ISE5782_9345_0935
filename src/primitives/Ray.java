@@ -1,7 +1,5 @@
 package primitives;
 
-import org.junit.jupiter.api.Test;
-
 import java.util.Objects;
 
 import static primitives.Util.isZero;
@@ -69,15 +67,13 @@ public class Ray {
      * @return
      */
     @Override
-    public boolean equals(Object o){
-        if(this==o)
-            return true;
-        if(o==null|| getClass()!=o.getClass())
-            return false;
-        Ray ray=(Ray)o;
-        return dir.xyz.equals(ray.dir.xyz.d1) && dir.xyz.equals(ray.dir.xyz.d2)
-                                              && dir.xyz.equals(ray.dir.xyz.d3)
-                                              && p0==ray.p0;
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+
+        if (obj == null) return false;
+        if (!(obj instanceof Ray)) return false;
+        Ray ray = (Ray)obj;
+        return p0.equals(ray.p0) && dir.equals(ray.dir);
     }
 
     /**

@@ -48,13 +48,8 @@ public class Vector extends Point {
      * @return
      */
     @Override
-    public boolean equals(Object o){
-        if(this==o)
-            return true;
-        if(o==null|| getClass()!=o.getClass())
-            return false;
-        Vector vector=(Vector)o;
-        return xyz.equals(vector.xyz);
+    public boolean equals(Object object) {
+        return super.equals(object);
     }
 
     /**

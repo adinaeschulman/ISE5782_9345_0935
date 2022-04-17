@@ -57,16 +57,14 @@ public class Point {
 
     /**
      * checks if 2 points are eql tp eachother
-     * @param o
+     * @param
      * @return
      */
     @Override
-    public boolean equals(Object o){
-        if(this==o)
-            return true;
-        if(o==null|| getClass()!=o.getClass())
-            return false;
-        Point point=(Point)o;
+    public boolean equals(Object object){
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        Point point = (Point)object;
         return xyz.equals(point.xyz);
     }
 

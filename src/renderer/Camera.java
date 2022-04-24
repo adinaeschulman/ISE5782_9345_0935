@@ -1,8 +1,14 @@
 package renderer;
 
+import primitives.Color;
 import primitives.Point;
 import primitives.Ray;
 import primitives.Vector;
+import scene.Scene;
+import unittests.renderer.RayTracerBase;
+import unittests.renderer.RayTracerBasic;
+
+import java.util.MissingResourceException;
 
 import static primitives.Util.isZero;
 
@@ -15,6 +21,8 @@ public class Camera {
     private double height;
     private double width;
     private double distance;
+    private ImageWriter imageWriter;
+    private RayTracerBase rayTracer;
 
     /**
      * constructor
@@ -139,5 +147,47 @@ public class Camera {
         }
         Pij = Pc.add(v_right.scale(Xj).add(v_up.scale(Yi)));
         return new Ray(P0, Pij.subtract(P0));
+    }
+
+    public Camera setImageWriter(ImageWriter imageWriter) {
+        this.imageWriter = imageWriter;
+        return  this;
+    }
+
+    public Camera setRayTracer(RayTracerBase rayTracer) {
+        this.rayTracer=rayTracer;
+        return this;
+    }
+
+    public void writeToImage() {
+        imageWriter.writeToImage();
+    }
+
+    public void printGrid(int gap, Color intervalColor) {
+        imageWriter.printGrid(gap,intervalColor);
+    }
+
+    public void renderImage() {
+        try {
+            if (imageWriter == null) {
+                throw new MissingResourceException("missing resource", ImageWriter.class.getName(), "");
+            }
+            if (rayTracer == null) {
+                throw new MissingResourceException("missing resource", rayTracer.getClass().getSimpleName(),"");
+            }
+
+            //rendering the image
+            int nX = imageWriter.getNx();
+            int nY = imageWriter.getNy();
+            for (int i = 0; i < nY; i++) {
+                for (int j = 0; j < nX; j++) {
+                    Ray ray = constructRay(nX, nY, j, i);
+                    Color pixelColor = rayTracer.traceRay(ray);
+                    imageWriter.writePixel(j, i, pixelColor);
+                }
+            }
+        } catch (MissingResourceException e) {
+            throw new UnsupportedOperationException("Not implemented yet" + e.getClassName());
+        }
     }
 }

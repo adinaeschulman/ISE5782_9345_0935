@@ -9,7 +9,7 @@ import java.util.List;
 public class Geometries implements Intersectable{
 
 
-    private List<Intersectable> intersectables;
+    private List<Intersectable> intersectables = new LinkedList<>();
     /**
      * constructor
      * @param intersectables

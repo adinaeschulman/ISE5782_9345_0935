@@ -38,9 +38,13 @@ public void testGetNormal() {
         // TC02: Ray starts before and crosses the sphere (2 points)
         Point p1 = new Point(0.0651530771650466, 0.355051025721682, 0);
         Point p2 = new Point(1.53484692283495, 0.844948974278318, 0);
-        List<Point> result = sphere.findIntersections(new Ray(new Point(-1, 0, 0),
-                new Vector(1, 1, 0)));
-       assertEquals(2, result.size(), "Wrong number of points");
+        List<Point> result = sphere.findIntersections(
+                new Ray(
+                        new Point(-1, 0, 0),
+                        new Vector(1, 1, 0)
+                 )
+        );
+       assertEquals(List.of(p1, p2), result, "Wrong number of points");
 
 
         // TC03: Ray starts inside the sphere (1 point)

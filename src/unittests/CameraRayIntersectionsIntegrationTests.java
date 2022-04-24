@@ -29,7 +29,6 @@ public class CameraRayIntersectionsIntegrationTests {
         int count = 0;
 
         List<Point> allpoints = null;
-
         cam.setVPSize(3, 3);
         cam.setVPDistance(1);
         int nX = 3;

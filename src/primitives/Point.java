@@ -2,6 +2,7 @@ package primitives;
 
 import java.util.Objects;
 public class Point {
+    public final  static Point ZERO= new Point(0,0,0);
     protected final Double3 xyz;
 
 

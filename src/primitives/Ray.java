@@ -1,5 +1,6 @@
 package primitives;
 
+import java.util.List;
 import java.util.Objects;
 
 import static primitives.Util.isZero;
@@ -17,7 +18,7 @@ public class Ray {
      */
     public Ray(Double3 xyz,double x,double y,double z){
         p0=new Point(xyz);
-        dir=new Vector(x,y,z);
+        dir=new Vector(x,y,z).normalize();
 
     }
 
@@ -28,7 +29,7 @@ public class Ray {
      */
     public Ray(Point p, Vector v){
         p0=p;
-        dir=v;
+        dir=v.normalize();
 
     }
 
@@ -96,5 +97,25 @@ public class Ray {
             throw new IllegalArgumentException("t equal 0 cause illegal vector ZERO");
         }
         return p0.add(dir.scale(t));
+    }
+
+    /**
+     * finds the closest point that intersects by the ray
+     * @param pointList intersection points
+     * @return closest point
+     */
+    public Point findClosestPoint(List<Point> pointList){
+        Point result = null;
+        double distance=Double.MAX_VALUE;
+        double d; 
+        for(var pt:pointList){
+            d=pt.distance(p0);
+            d=pt.distance(p0);
+            if(d<distance) {
+                distance = d;
+                result = pt;
+            }
+        }
+        return result;
     }
 }

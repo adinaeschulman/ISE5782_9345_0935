@@ -8,11 +8,7 @@ import primitives.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-    class GeometriesTests {
 
-        @Test
-        void testAdd() {
-        }
 
         /**
          * Unit tests for geometries.Geometries class
@@ -67,8 +63,10 @@ import static org.junit.jupiter.api.Assertions.*;
             //TC14 geometries is empty
             @Test
             void findIntersections5() {
-                assertNull(geometries, "empty geometries");
+                Ray ray = new Ray(new Point(6, 2, 2), new Vector(0, 3, 1));
+                Geometries geometries = new Geometries();
+                assertNull(geometries.findIntersections(ray), "empty geometries");
             }
         }
-    }
+
 

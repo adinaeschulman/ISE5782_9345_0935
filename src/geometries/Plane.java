@@ -9,7 +9,7 @@ import java.util.List;
 import static primitives.Util.alignZero;
 import static primitives.Util.isZero;
 
-public class Plane  implements  Geometry{
+public class Plane extends Geometry {
  final private Point q0;
  final private Vector normal;
 
@@ -71,32 +71,31 @@ public class Plane  implements  Geometry{
     }
 
     @Override
-    public List<Point> findIntersections(Ray ray)
-    {
-        Point P0=ray.getP0();
-        Vector v=ray.getDir();
-        if(q0.equals(P0))
-        {return null;}
-        Vector n = normal;
-        //denominator
-        double nv=alignZero(n.dotProduct(v));
-        //ray is lying in the plane axis
-        if(isZero(nv)){
-            return null;}
-        Vector P0_Q0=q0.subtract(P0);
-        double nP0_Q0=alignZero(n.dotProduct(P0_Q0));
-        //numerator
-        double nP0Q0=alignZero(n.dotProduct(P0_Q0));
-        //t should>0
-        if(isZero(nP0Q0))
-        {
-            return  null;
-        }
-        double t=alignZero(nP0Q0/nv);
-        if(t<=0)
-        {
+    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
+        Point P0 = ray.getP0();
+        Vector v = ray.getDir();
+        if (q0.equals(P0)) {
             return null;
         }
-        return List.of(ray.getPoint(t));
+        Vector n = normal;
+        //denominator
+        double nv = alignZero(n.dotProduct(v));
+        //ray is lying in the plane axis
+        if (isZero(nv)) {
+            return null;
+        }
+        Vector P0_Q0 = q0.subtract(P0);
+        double nP0_Q0 = alignZero(n.dotProduct(P0_Q0));
+        //numerator
+        double nP0Q0 = alignZero(n.dotProduct(P0_Q0));
+        //t should>0
+        if (isZero(nP0Q0)) {
+            return null;
+        }
+        double t = alignZero(nP0Q0 / nv);
+        if (t <= 0) {
+            return null;
+        }
+        return List.of(new GeoPoint(this, ray.getPoint(t)));
     }
 }

@@ -14,7 +14,7 @@ import static primitives.Util.*;
  *
  * @author Dan
  */
-public class Polygon implements Geometry {
+public class Polygon extends Geometry {
     /**
      * List of polygon's vertices
      */
@@ -92,10 +92,9 @@ public class Polygon implements Geometry {
         return plane.getNormal();
     }
 
-
     @Override
-    public List<Point> findIntersections(Ray ray) {
-        List<Point> result = plane.findIntersections(ray);
+    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
+        List<GeoPoint> result = plane.findGeoIntersectionsHelper((ray));
 
         if (result == null) {
             return result;
@@ -133,7 +132,7 @@ public class Polygon implements Geometry {
             }
         }
 
-        return result;
+        return List.of(new GeoPoint(this,result.get(0).point ));
     }
 
 }

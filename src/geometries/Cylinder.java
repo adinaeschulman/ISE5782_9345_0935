@@ -6,13 +6,14 @@ import java.util.List;
 
 import static primitives.Util.*;
 
-public class Cylinder extends Tube{
+public class Cylinder extends Tube {
     private final double height;
     final Plane base1;
     final Plane base2;
 
     /**
      * constructor
+     *
      * @param axisRay
      * @param radius
      * @param height
@@ -27,7 +28,7 @@ public class Cylinder extends Tube{
     }
 
     @Override
-    public  Vector getNormal(Point point) {
+    public Vector getNormal(Point point) {
         return null;
     }
 
@@ -41,22 +42,8 @@ public class Cylinder extends Tube{
                 "height=" + height;
     }
 
-    /**
-     * @param ray
-     * @return
-     */
     @Override
-    public List<Point> findIntersections(Ray ray) {
-//        //todo rethink the all thing
-//        List<Point3D> result = super.findIntersections(ray);
-//        if(result != null){
-//            Point3D p = result.get(0);
-//            Vector v = p.subtract(_axis.getP0());
-//           //todo
-//        }
-//        //todo do the caps
-//        return result;
-
+    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
         Vector vAxis = axisRay.getDir();
         Vector v = ray.getDir();
         Point p0 = ray.getP0();
@@ -81,7 +68,7 @@ public class Cylinder extends Tube{
             } catch (Exception e) { // the rays start at the same point
                 // check whether the ray goes into the cylinder
                 return vAxisV > 0 ? //
-                        List.of(ray.getPoint(height)) : null;
+                        List.of(new GeoPoint(this,ray.getPoint(height))) : null;
             }
 
             double t1 = alignZero(vP0PC.dotProduct(v)); // project Pc (O1) on the ray
@@ -97,11 +84,11 @@ public class Cylinder extends Tube{
             // the ray goes through the bases - test bases vs. ray head and return points
             // accordingly
             if (t1 > 0 && t2 > 0)
-                return List.of(p1, p2);
+                return List.of(new GeoPoint(this,p1), new GeoPoint(this,p2));
             if (t1 > 0)
-                return List.of(p1);
+                return List.of(new GeoPoint(this,p1));
             if (t2 > 0)
-                return List.of(p2);
+                return List.of(new GeoPoint(this,p2));
             return null;
         }
 
@@ -133,11 +120,11 @@ public class Cylinder extends Tube{
 
         // Check the points and return list of points accordingly
         if (p1 != null && p2 != null)
-            return List.of(p1, p2);
+            return List.of(new GeoPoint(this,p1), new GeoPoint(this,p2));
         if (p1 != null)
-            return List.of(p1);
+            return List.of(new GeoPoint(this,p1));
         if (p2 != null)
-            return List.of(p2);
+            return List.of(new GeoPoint(this,p2));
         return null;
     }
 }

@@ -23,9 +23,9 @@ public class Triangle extends Polygon {
                 ", plane=" + plane +
                 '}';
     }
+// have to come back to this not sure if we need a whole findintersection function for triangle
     @Override
-    public List<Point> findIntersections(Ray ray) {
-        return super.findIntersections(ray);
+    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
+        return super.findGeoIntersectionsHelper(ray);
     }
-
 }

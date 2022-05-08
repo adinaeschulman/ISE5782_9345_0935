@@ -181,13 +181,17 @@ public class Camera {
             int nY = imageWriter.getNy();
             for (int i = 0; i < nY; i++) {
                 for (int j = 0; j < nX; j++) {
-                    Ray ray = constructRay(nX, nY, j, i);
-                    Color pixelColor = rayTracer.traceRay(ray);
-                    imageWriter.writePixel(j, i, pixelColor);
+                    castRay(nX, nY, i, j);
                 }
             }
         } catch (MissingResourceException e) {
             throw new UnsupportedOperationException("Not implemented yet" + e.getClassName());
         }
+    }
+
+    private void castRay(int nX, int nY, int i, int j) {
+        Ray ray = constructRay(nX, nY, j, i);
+        Color pixelColor = rayTracer.traceRay(ray);
+        imageWriter.writePixel(j, i, pixelColor);
     }
 }

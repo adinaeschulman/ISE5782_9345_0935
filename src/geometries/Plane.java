@@ -20,7 +20,7 @@ public class Plane extends Geometry {
      * @param p2
      * @param p3
      */
-    public Plane(Point p1, Point p2,Point p3) {
+    public Plane(Point p1, Point p2, Point p3) {
         if(p1.equals(p2)||p2.equals(p3)||p1.equals(p3))
             throw new IllegalArgumentException("2 of the points are the same");
         Vector u1=p2.subtract(p1);

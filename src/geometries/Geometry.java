@@ -5,17 +5,13 @@ import java.util.List;
 
 //interface
 public abstract class Geometry extends Intersectable {
-    protected  Color emission;
+    protected  Color emission = Color.BLACK;
 
     public Color getEmission() {
-        return emission=Color.BLACK;
+        return emission;
     }
 
     public void setEmission(Color emission) {
-        this.emission = emission;
-    }
-
-    public Geometry(Color emission) {
         this.emission = emission;
     }
 

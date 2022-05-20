@@ -15,6 +15,6 @@ public interface LightSource {
      * @param point starting point
      * @return dorection of light
      */
-    public Vector getl(Point point);
+    public Vector getL(Point point);
 
 }

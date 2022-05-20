@@ -1,24 +1,24 @@
 package primitives;
 
 public class Material {
-    private double Kd = 0d;
-    private double Ks = 0d;
+    private Double3 Kd = Double3.ZERO;
+    private Double3 Ks = Double3.ZERO;
     private int nShininess = 0;
 
-    public Material setKd(double kd) {
+    public Material setKd(Double3 kd) {
         this.Kd = kd;
         return this;
     }
 
-    public double getKd() {
+    public Double3 getKd() {
         return Kd;
     }
 
-    public double getKs() {
+    public Double3 getKs() {
         return Ks;
     }
 
-    public Material setKs(double ks) {
+    public Material setKs(Double3 ks) {
         this.Ks = ks;
         return this;
     }

@@ -1,11 +1,7 @@
 package lighting;
-import lighting.LightSource;
-import lighting.PointLight;
 import primitives.Color;
 import primitives.Point;
-import primitives.Util;
 import primitives.Vector;
-import static primitives.Util.*;
 
 public class SpotLight extends PointLight implements LightSource {
 
@@ -39,7 +35,7 @@ public class SpotLight extends PointLight implements LightSource {
     }
 
     public Color getIntensity(Point p) {
-        double projection = direction.dotProduct(getl(p));
+        double projection = direction.dotProduct(getL(p));
 
         double factor = Math.max(0, projection);
 
@@ -47,7 +43,6 @@ public class SpotLight extends PointLight implements LightSource {
 
         return pointIntensity.scale(factor);
     }
-
 
     public SpotLight setNarrowBeam(double narrowBeam) {
         this.narrowBeam = narrowBeam;

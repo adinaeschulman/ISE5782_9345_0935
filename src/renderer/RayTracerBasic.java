@@ -1,4 +1,4 @@
-package unittests.renderer;
+package renderer;
 import geometries.Geometries;
 import geometries.Intersectable.GeoPoint;
 import primitives.Color;
@@ -20,13 +20,15 @@ public class RayTracerBasic extends RayTracerBase {
         List<GeoPoint> intersections = geometries.findGeoIntersectionsHelper(ray);
         if (intersections != null) {
             GeoPoint closestPoint = ray.findClosestGeoPoint(intersections);
-            return calcColor(closestPoint);
+            return calcColor(closestPoint,ray);
         }
         //ray did not intersect any geometrical object
         return scene.getBackground();
     }
 
-    private Color calcColor(GeoPoint point) {
-        return scene.getAmbientLight().getIntensity();
+    private Color  calcColor(GeoPoint point, Ray ray) {
+        Color result=scene.getAmbientLight().getIntesity();
+        result=result.add(point.geometry.getEmission());
+        return result;
     }
 }

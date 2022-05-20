@@ -1,12 +1,8 @@
 package renderer;
-
 import primitives.Color;
 import primitives.Point;
 import primitives.Ray;
 import primitives.Vector;
-import scene.Scene;
-import unittests.renderer.RayTracerBase;
-import unittests.renderer.RayTracerBasic;
 
 import java.util.MissingResourceException;
 
@@ -159,15 +155,16 @@ public class Camera {
         return this;
     }
 
-    public void writeToImage() {
+    public Camera writeToImage() {
         imageWriter.writeToImage();
+        return  this;
     }
 
     public void printGrid(int gap, Color intervalColor) {
         imageWriter.printGrid(gap,intervalColor);
     }
 
-    public void renderImage() {
+    public Camera renderImage() {
         try {
             if (imageWriter == null) {
                 throw new MissingResourceException("missing resource", ImageWriter.class.getName(), "");
@@ -187,6 +184,7 @@ public class Camera {
         } catch (MissingResourceException e) {
             throw new UnsupportedOperationException("Not implemented yet" + e.getClassName());
         }
+        return this;
     }
 
     private void castRay(int nX, int nY, int i, int j) {

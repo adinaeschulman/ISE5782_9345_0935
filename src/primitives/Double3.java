@@ -7,7 +7,7 @@ import static primitives.Util.*;
 
 /**
  * This class will serve all primitive classes based on three numbers
- * point in the 3d dimention and contains an x y z
+ *
  * @author Dan Zilberstein
  */
 public class Double3 {
@@ -18,7 +18,12 @@ public class Double3 {
     /**
      * Zero triad (0,0,0)
      */
-    static final Double3 ZERO = new Double3(0, 0, 0);
+    public static final Double3 ZERO = new Double3(0, 0, 0);
+
+    /**
+     * Ones triad (1,1,1)
+     */
+    public static final Double3 ONE = new Double3(1, 1, 1);
 
     /**
      * Constructor to initialize Double3 based object with its three number values
@@ -34,38 +39,35 @@ public class Double3 {
     }
 
     /**
-     * checking if the 2 objetct  in double3 is eql to eachother
-     * @param obj
-     * @return
+     * Constructor to initialize Double3 based object the same number values
+     *
+     * @param value number value for all 3 numbers
      */
+    public Double3(double value) {
+        this.d1 = value;
+        this.d2 = value;
+        this.d3 = value;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
         if (obj == null)
             return false;
-        if (!(obj instanceof Double3))
-            return false;
-        Double3 other = (Double3) obj;
-        return isZero(d1 - other.d1) && isZero(d2 - other.d2) && isZero(d3 - other.d3);
+        if (obj instanceof Double3 other)
+            return isZero(d1 - other.d1) && isZero(d2 - other.d2) && isZero(d3 - other.d3);
+        return false;
     }
 
-    /**
-     * returns the sum off the point of 3 poarts of the point in the 3d point as a hashcode
-     * @return
-     */
     @Override
     public int hashCode() {
         return (int) Math.round(d1 + d2 + d3);
     }
 
-    /**
-     * prints the double3 point
-     * @return
-     */
     @Override
     public String toString() {
-        return "(" + d1 + ", " + d2 + ", " + d3 + ")";
+        return "(" + d1 + "," + d2 + "," + d3 + ")";
     }
 
     /**
@@ -75,7 +77,7 @@ public class Double3 {
      * @param rhs right handle side operand for addition
      * @return result of add
      */
-    Double3 add(Double3 rhs) {
+    public Double3 add(Double3 rhs) {
         return new Double3(d1 + rhs.d1, d2 + rhs.d2, d3 + rhs.d3);
     }
 
@@ -86,7 +88,7 @@ public class Double3 {
      * @param rhs right handle side operand for addition
      * @return result of add
      */
-    Double3 subtract(Double3 rhs) {
+    public Double3 subtract(Double3 rhs) {
         return new Double3(d1 - rhs.d1, d2 - rhs.d2, d3 - rhs.d3);
     }
 
@@ -97,7 +99,7 @@ public class Double3 {
      * @param rhs right handle side operand for scaling
      * @return result of scale
      */
-    Double3 scale(double rhs) {
+    public Double3 scale(double rhs) {
         return new Double3(d1 * rhs, d2 * rhs, d3 * rhs);
     }
 
@@ -108,7 +110,7 @@ public class Double3 {
      * @param rhs right handle side operand for reducing
      * @return result of scale
      */
-    Double3 reduce(double rhs) {
+    public Double3 reduce(double rhs) {
         return new Double3(d1 / rhs, d2 / rhs, d3 / rhs);
     }
 
@@ -119,8 +121,18 @@ public class Double3 {
      * @param rhs right handle side operand for product
      * @return result of product
      */
-    Double3 product(Double3 rhs) {
+    public Double3 product(Double3 rhs) {
         return new Double3(d1 * rhs.d1, d2 * rhs.d2, d3 * rhs.d3);
+    }
+
+    /**
+     * Checks whether all the numbers are lower than a test number
+     * @param k the test number
+     * @return true if all the numbers are less than k, false otherwise
+     */
+
+    public boolean lowerThan(double k) {
+        return d1 < k && d2 < k && d3 < k;
     }
 
 }

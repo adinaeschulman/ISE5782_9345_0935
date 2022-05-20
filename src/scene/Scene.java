@@ -1,8 +1,13 @@
 package scene;
 
-import elements.AmbientLight;
+import lighting.AmbientLight;
 import geometries.Geometries;
+import lighting.Light;
 import primitives.Color;
+import primitives.Point;
+
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Scene for holding all the elemnts
@@ -11,13 +16,16 @@ public class Scene {
     private final String name;
     private final Color background;
     private final AmbientLight ambientLight;
-    private final Geometries  geometries;
-    public Scene(SceneBuilder builder){
+    private final Geometries geometries;
+    private final List<Light> lights;
+
+    public Scene(SceneBuilder builder) {
 
         this.name = builder.name;
         this.background = builder.background;
         this.ambientLight = builder.ambientLight;
         this.geometries = builder.geometries;
+        lights = builder.lights;
     }
 
     public String getName() {
@@ -36,16 +44,26 @@ public class Scene {
         return geometries;
     }
 
-    public static   class SceneBuilder{
+    public List<Light> getLights() {
+        return lights;
+    }
+
+    public static class SceneBuilder {
+        private List<Light> lights=new LinkedList<>();
         private final String name;
-        public Color background =Color.BLACK;
-        public AmbientLight ambientLight= new AmbientLight();
+        public Color background = Color.BLACK;
+        public AmbientLight ambientLight = new AmbientLight();
         public Geometries geometries = new Geometries();
 
         public SceneBuilder(String name) {
             this.name = name;
         }
+
         //chaining methods
+        public SceneBuilder setLights(List<Light> lights) {
+            this.lights = lights;
+            return this;
+        }
 
         public SceneBuilder setBackground(Color background) {
             this.background = background;
@@ -61,8 +79,9 @@ public class Scene {
             this.geometries = geometries;
             return this;
         }
-        public Scene build(){
-            return new Scene(this );
+
+        public Scene build() {
+            return new Scene(this);
         }
     }
 

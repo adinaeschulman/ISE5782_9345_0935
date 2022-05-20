@@ -1,12 +1,11 @@
-package elements;
+package lighting;
 
 import primitives.Color;
 import primitives.Double3;
 /**
  * Ambient Light to give basic illumination
  */
-public class AmbientLight {
-    private final Color intensity;//intensity as color
+public class AmbientLight extends Light {
 
     /**
      * primary constructor
@@ -14,21 +13,14 @@ public class AmbientLight {
      * @param Ka intensity
      */
     public AmbientLight(Color Ia, Double3 Ka){
-         intensity = Ia.scale(Ka);
+        super(Ia.scale(Ka));
     }
 
     /**
      * default constructor
      */
     public AmbientLight(){
-        intensity=Color.BLACK;
+        super(Color.BLACK);
     }
 
-    /**
-     * getter for the ambient light intensity
-     * @return the intensity after the scale)
-     */
-    public Color getIntensity() {
-        return intensity;
-    }
 }

@@ -46,7 +46,7 @@ public class RayTracerBasic extends RayTracerBase {
             Vector l = lightSource.getL(gp.point);
             double nl = alignZero(n.dotProduct(l));
             if (nl * nv > 0) { // sign(nl) == sing(nv)
-                if (unshaded(gp, l, n)) {
+                if (unshaded(gp, l, n,nv)) {
                     Color iL = lightSource.getIntensity(gp.point);
                     color = color.add(iL.scale(calcDiffusive(material, nl)),
                             iL.scale(calcSpecular(material, n, l, nl, v)));
@@ -70,19 +70,30 @@ public class RayTracerBasic extends RayTracerBase {
         Double3 result = material.getKd().scale(nl);
         return result;
     }
-    private boolean unshaded(GeoPoint gp, Vector l, Vector n)
-    {
-        Vector lightDirection=l.scale(-1);
-        Vector epsVector = n.scale(DELTA);
+//    private boolean unshaded(GeoPoint gp, Vector l, Vector n)
+//    {
+//        Vector lightDirection=l.scale(-1);
+//        Vector epsVector = n.scale(DELTA);
+//        Point point = gp.point.add(epsVector);
+//        Ray lightRay = new Ray(point, lightDirection);
+//        List<Point> intersections = scene.getGeometries().findIntersections(lightRay);
+//        if (intersections == null)
+//            return true;
+//        return false;
+//
+//
+//    }
+
+    private boolean unshaded(GeoPoint gp, Vector l, Vector n, double nv) {
+        Vector lightDirection = l.scale(-1); // from point to light source
+        Vector epsVector = n.scale(nv < 0 ? DELTA : -DELTA);
         Point point = gp.point.add(epsVector);
         Ray lightRay = new Ray(point, lightDirection);
         List<Point> intersections = scene.getGeometries().findIntersections(lightRay);
         if (intersections == null)
-            return true;
-        return false;
+           return true;
+       return false;
 
 
-    }
-
-}
+    }}
 

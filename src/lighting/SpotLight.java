@@ -19,9 +19,9 @@ public class SpotLight extends PointLight {
     }
 
     @Override
-    public Color getIntesity(Point point) {
+    public Color getIntensity(Point point) {
         double max=Math.max(0, getL(point).dotProduct(direction));
-        return  super.getIntesity(point).scale(max);
+        return  super.getIntensity(point).scale(max);
 
     }
 

@@ -13,7 +13,7 @@ private final Vector direction;
     }
 
     @Override
-    public Color getIntesity(Point point) {
+    public Color getIntensity(Point point) {
         return super.getIntesity();
     }
 

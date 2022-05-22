@@ -11,7 +11,7 @@ import java.util.List;
 import static primitives.Util.alignZero;
 
 public class RayTracerBasic extends RayTracerBase {
-
+    private static final double DELTA = 0.1;
     public RayTracerBasic(Scene scene) {
         super(scene);
     }
@@ -46,9 +46,11 @@ public class RayTracerBasic extends RayTracerBase {
             Vector l = lightSource.getL(gp.point);
             double nl = alignZero(n.dotProduct(l));
             if (nl * nv > 0) { // sign(nl) == sing(nv)
-                Color iL = lightSource.getIntensity(gp.point);
-                color = color.add(iL.scale(calcDiffusive(material, nl)),
-                        iL.scale(calcSpecular(material, n, l, nl, v)));
+                if (unshaded(gp, l, n)) {
+                    Color iL = lightSource.getIntensity(gp.point);
+                    color = color.add(iL.scale(calcDiffusive(material, nl)),
+                            iL.scale(calcSpecular(material, n, l, nl, v)));
+                }
             }
         }
         return color;
@@ -67,6 +69,19 @@ public class RayTracerBasic extends RayTracerBase {
         nl = Math.abs(nl);
         Double3 result = material.getKd().scale(nl);
         return result;
+    }
+    private boolean unshaded(GeoPoint gp, Vector l, Vector n)
+    {
+        Vector lightDirection=l.scale(-1);
+        Vector epsVector = n.scale(DELTA);
+        Point point = gp.point.add(epsVector);
+        Ray lightRay = new Ray(point, lightDirection);
+        List<Point> intersections = scene.getGeometries().findIntersections(lightRay);
+        if (intersections == null)
+            return true;
+        return false;
+
+
     }
 
 }

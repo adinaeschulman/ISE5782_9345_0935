@@ -10,6 +10,7 @@ import static primitives.Util.isZero;
 public class Ray {
     private Point p0;
     private Vector dir;
+    private static final double DELTA = 0.01;
 
     /**
      * constructor of a ray given 3 different dimensions
@@ -33,6 +34,22 @@ public class Ray {
         p0=p;
         dir=v.normalize();
 
+    }
+
+
+    /**
+     * Constructor that gets 3 parameters
+     * @param point
+     * @param direction
+     * @param normal
+     * @return point + normal.scale(DELTA)
+     */
+    public Ray(Point point, Vector direction, Vector normal)
+    {
+        this.dir = direction.normalize();
+        double nV = normal.dotProduct(direction);
+        Vector delta = normal.scale(nV >= 0 ? DELTA : -DELTA);
+        this.p0 = point.add(delta);
     }
 
 

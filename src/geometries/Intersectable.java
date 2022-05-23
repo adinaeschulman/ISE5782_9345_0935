@@ -21,7 +21,7 @@ public abstract class   Intersectable   {
                 : geoList.stream().map(gp->gp.point).toList();
     }
 //NVI pattern
-    private List<GeoPoint> findGeoIntersections(Ray ray) {
+public List<GeoPoint> findGeoIntersections(Ray ray) {
         return findGeoIntersectionsHelper(ray);
     }
 

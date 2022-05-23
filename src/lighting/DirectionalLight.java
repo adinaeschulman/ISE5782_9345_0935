@@ -21,4 +21,9 @@ private final Vector direction;
     public Vector getL(Point point) {
         return direction;
     }
+
+    @Override
+    public double getDistance(Point point) {
+        return Double.POSITIVE_INFINITY;
+    }
 }

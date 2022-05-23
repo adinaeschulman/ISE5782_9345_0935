@@ -27,6 +27,12 @@ public class PointLight extends Light implements LightSource {
         return point.subtract(position).normalize();
     }
 
+    @Override
+    public double getDistance(Point pnt)
+    {
+        return pnt.distance(position);
+    }
+
     public PointLight setKl(double kl) {
         this.Kl = kl;
         return this;

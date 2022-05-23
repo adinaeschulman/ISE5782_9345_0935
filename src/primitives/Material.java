@@ -1,35 +1,139 @@
 package primitives;
 
+/**
+ * Class represents the material of a Geometry
+ */
 public class Material {
-    private Double3 Kd = Double3.ZERO;
-    private Double3 Ks = Double3.ZERO;
-    private int nShininess = 0;
+    // Field represents the
+    public Double3 kD = Double3.ZERO;
+    // Field represents the
+    public Double3 kS = Double3.ZERO;
+    // Field represents the shininess of the material
+    public int nShininess = 0;
+    /**
+     * for transparency
+     */
+    public Double3 kT=Double3.ZERO;
+    /**
+     * for reflection
+     */
+    public Double3 kR=Double3.ZERO;
 
-    public Material setKd(Double3 kd) {
-        this.Kd = kd;
+    /**
+     * Builder patterns setter for field kD
+     * @param kD parameter for kD
+     * @return Material object
+     */
+    public Material setKd(Double3 kD) {
+        this.kD = kD;
         return this;
     }
 
-    public Double3 getKd() {
-        return Kd;
-    }
-
-    public Double3 getKs() {
-        return Ks;
-    }
-
-    public Material setKs(Double3 ks) {
-        this.Ks = ks;
+    /**
+     * Builder patterns setter for field kt
+     * @param kt parameter for kt
+     * @return Material object
+     */
+    public Material setKT(Double3 kt) {
+        this.kT = kt;
         return this;
     }
 
+    /**
+     * Builder patterns setter for field kR
+     * @param kR parameter for kR
+     * @return Material object
+     */
+    public Material setkR(Double3 kR) {
+        this.kR = kR;
+        return this;
+    }
+
+    /**
+     * Builder patterns setter for field kD
+     * @param value parameter for kD constructor
+     * @return Material object
+     */
+    public Material setKd(double value) {
+        this.kD = new Double3(value);
+        return this;
+    }
+
+    /**
+     * Builder patterns setter for field kS
+     * @param kS parameter for kS
+     * @return Material object
+     */
+    public Material setKs(Double3 kS) {
+        this.kS = kS;
+        return this;
+    }
+
+    /**
+     * Builder patterns setter for field kS
+     * @param value parameter for kS constructor
+     * @return Material object
+     */
+    public Material setKs(double value) {
+        this.kS = new Double3(value);
+        return this;
+    }
+
+    /**
+     * Builder patterns setter for field nShininess
+     * @param nShininess parameter for nShininess
+     * @return Material object
+     */
     public Material setShininess(int nShininess) {
         this.nShininess = nShininess;
         return this;
     }
 
-    public int getnShininess() {
-        return nShininess;
+
+    /**
+     * Builder patterns setter for field kT
+     * @param value parameter for kT constructor
+     * @return Material object
+     */
+    public Material setKT(double value) {
+        this.kT = new Double3(value);
+        return this;
     }
 
+    public Double3 getkS() {
+        return kS;
+    }
+
+    /**
+     * Builder patterns setter for field kR
+     * @param kR parameter for kR
+     * @return Material object
+     */
+    public Material setKR(Double3 kR) {
+        this.kR = kR;
+        return this;
+    }
+
+    /**
+     * Builder patterns setter for field kR
+     * @param value parameter for kR constructor
+     * @return Material object
+     */
+    public Material setKR(double value) {
+        this.kR = new Double3(value);
+        return this;
+    }
+
+    public Double3 getKd() {
+        return kD;
+    }
+
+
+    public Double3 getKs() {
+        return kS;
+    }
+
+    public double getnShininess() {
+        return  0;
+    }
 }

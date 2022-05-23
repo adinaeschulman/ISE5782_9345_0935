@@ -12,6 +12,9 @@ import static primitives.Util.alignZero;
 
 public class RayTracerBasic extends RayTracerBase {
     private static final double DELTA = 0.1;
+    private static final int MAX_CALC_COLOR_LEVEL = 10;
+    private static final double MIN_CALC_COLOR_K = 0.001;
+    private static final double INITIAL_K = 1.0 ;
     public RayTracerBasic(Scene scene) {
         super(scene);
     }
@@ -46,7 +49,7 @@ public class RayTracerBasic extends RayTracerBase {
             Vector l = lightSource.getL(gp.point);
             double nl = alignZero(n.dotProduct(l));
             if (nl * nv > 0) { // sign(nl) == sing(nv)
-                if (unshaded(gp, l, n,nv)) {
+                if  (unshaded(gp, lightSource, l, n, nv)) {
                     Color iL = lightSource.getIntensity(gp.point);
                     color = color.add(iL.scale(calcDiffusive(material, nl)),
                             iL.scale(calcSpecular(material, n, l, nl, v)));
@@ -70,30 +73,48 @@ public class RayTracerBasic extends RayTracerBase {
         Double3 result = material.getKd().scale(nl);
         return result;
     }
-//    private boolean unshaded(GeoPoint gp, Vector l, Vector n)
-//    {
-//        Vector lightDirection=l.scale(-1);
-//        Vector epsVector = n.scale(DELTA);
-//        Point point = gp.point.add(epsVector);
-//        Ray lightRay = new Ray(point, lightDirection);
-//        List<Point> intersections = scene.getGeometries().findIntersections(lightRay);
-//        if (intersections == null)
-//            return true;
-//        return false;
-//
-//
-//    }
 
-    private boolean unshaded(GeoPoint gp, Vector l, Vector n, double nv) {
+
+
+    private boolean unshaded(GeoPoint gp, LightSource light, Vector l, Vector n, double nv) {
         Vector lightDirection = l.scale(-1); // from point to light source
         Vector epsVector = n.scale(nv < 0 ? DELTA : -DELTA);
         Point point = gp.point.add(epsVector);
-        Ray lightRay = new Ray(point, lightDirection);
-        List<Point> intersections = scene.getGeometries().findIntersections(lightRay);
-        if (intersections == null)
-           return true;
-       return false;
+        Ray lightRay = new Ray(gp.point, lightDirection,n);
+        double lightDistance = light.getDistance(gp.point);
+        List<GeoPoint> intersections = scene.getGeometries().findGeoIntersections(lightRay); //new Ray(lightDistance)
+        if (intersections == null) return true;
+        //if there are no intersections return true (there is no shadow)
 
 
-    }}
+//        for (GeoPoint intersection : intersections) {
+//            //for each intersection if there are points in the intersections list that are closer
+//            //to the point then light source, return false
+//            if (intersection.geometry.getMaterial().kT.lowerThan(MIN_CALC_COLOR_K)) {
+//                return false;
+//            }
+//        }
+//        return true;
+        return true;
+
+    }
+
+    /**
+     * find the closest Geo point intersection to the ray
+     * @param ray is the ray from the viewer
+     * @return the closest intersection to the ray
+     */
+    private GeoPoint findClosestIntersection(Ray ray){
+        if (ray == null) {
+            return null;
+        }
+
+        List<GeoPoint> intersections = scene.getGeometries().findGeoIntersections(ray);
+        if (intersections == null) {
+            return null;
+        }
+        GeoPoint closestPoint = ray.findClosestGeoPoint(intersections);
+        return closestPoint;
+    }
+}
 

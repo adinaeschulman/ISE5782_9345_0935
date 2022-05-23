@@ -87,15 +87,15 @@ public class RayTracerBasic extends RayTracerBase {
         //if there are no intersections return true (there is no shadow)
 
 
-//        for (GeoPoint intersection : intersections) {
-//            //for each intersection if there are points in the intersections list that are closer
-//            //to the point then light source, return false
-//            if (intersection.geometry.getMaterial().kT.lowerThan(MIN_CALC_COLOR_K)) {
-//                return false;
-//            }
-//        }
-//        return true;
+        for (GeoPoint intersection : intersections) {
+            //for each intersection if there are points in the intersections list that are closer
+            //to the point then light source, return false
+            if (intersection.geometry.getMaterial().kT.lowerThan(MIN_CALC_COLOR_K)) {
+                return false;
+            }
+        }
         return true;
+
 
     }
 

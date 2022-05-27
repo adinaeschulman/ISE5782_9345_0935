@@ -28,4 +28,6 @@ public abstract class Geometry extends Intersectable {
     public Material getMaterial() {
         return material;
     }
+
+    //public abstract List<GeoPoint> findGeoIntersectionsHelper(Ray ray);
 }

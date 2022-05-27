@@ -73,8 +73,9 @@ public class Tube extends Geometry {
         return n;
     }
 
+
     @Override
-    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
+    public List<GeoPoint> findGeoIntersectionsHelper(Ray ray, double maxDistance) {
         Vector vAxis = axisRay.getDir();
         Vector v = ray.getDir();
         Point p0 = ray.getP0();

@@ -5,10 +5,8 @@ import geometries.Geometries;
 import lighting.Light;
 import lighting.LightSource;
 import primitives.Color;
-import primitives.Double3;
 import primitives.Point;
 
-import javax.xml.crypto.Data;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -18,7 +16,7 @@ import java.util.List;
 public class Scene {
     private final String name;
     private final Color background;
-    private final AmbientLight ambientLight;
+    private AmbientLight ambientLight;
     private final Geometries geometries;
     private final List<LightSource> lights;
 
@@ -51,9 +49,8 @@ public class Scene {
         return lights;
     }
 
-    public Scene setAmbientLight(AmbientLight ambientLight) {
-        return setAmbientLight(ambientLight);
-
+    public void setAmbientLight(AmbientLight ambientLight) {
+        this.ambientLight=ambientLight;
     }
 
 
@@ -73,7 +70,6 @@ public class Scene {
             this.lights = lights;
             return this;
         }
-
 
         public SceneBuilder setBackground(Color background) {
             this.background = background;

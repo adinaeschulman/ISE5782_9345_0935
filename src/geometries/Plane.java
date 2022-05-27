@@ -9,7 +9,7 @@ import java.util.List;
 import static primitives.Util.alignZero;
 import static primitives.Util.isZero;
 
-public class Plane extends Geometry {
+public class Plane extends Geometry  {
  final private Point q0;
  final private Vector normal;
 
@@ -60,6 +60,7 @@ public class Plane extends Geometry {
     public Vector getNormal(Point point) {
         return normal;
     }
+
     /**
      * getter of _normal field
      * @deprecated use {@link Plane#getNormal()} with null values as parameter
@@ -71,7 +72,7 @@ public class Plane extends Geometry {
     }
 
     @Override
-    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
+    public List<GeoPoint> findGeoIntersectionsHelper(Ray ray,double maxDistance) {
         Point P0 = ray.getP0();
         Vector v = ray.getDir();
         if (q0.equals(P0)) {
@@ -92,8 +93,14 @@ public class Plane extends Geometry {
         if (isZero(nP0Q0)) {
             return null;
         }
+        double np0q0=alignZero(n.dotProduct(P0_Q0));
         double t = alignZero(nP0Q0 / nv);
         if (t <= 0) {
+            return null;
+        }
+        t=alignZero(np0q0/nv);
+        if(alignZero(t-maxDistance)>0)
+        {
             return null;
         }
         return List.of(new GeoPoint(this, ray.getPoint(t)));

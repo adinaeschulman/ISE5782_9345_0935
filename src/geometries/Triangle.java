@@ -2,10 +2,10 @@ package geometries;
 //has normal from pologyn
 import primitives.Point;
 import primitives.Ray;
-import primitives.Vector;
+
 import java.util.List;
 
-public class Triangle extends Polygon {
+public class Triangle extends Polygon{
     /**
      * constructor that intializes the triangle
      * @param p1
@@ -25,7 +25,7 @@ public class Triangle extends Polygon {
     }
 // have to come back to this not sure if we need a whole findintersection function for triangle
     @Override
-    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
-        return super.findGeoIntersectionsHelper(ray);
+    public List<GeoPoint> findGeoIntersectionsHelper(Ray ray, double maxD) {
+        return super.findGeoIntersectionsHelper(ray,maxD);
     }
 }

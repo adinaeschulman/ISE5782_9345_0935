@@ -29,9 +29,6 @@ public class SpotLight extends PointLight {
         this.narrowBeam = narrowBeam;
         return  this;
     }
-
-   // MISINFGET DITANCE AD GETL
-
 }
 
 

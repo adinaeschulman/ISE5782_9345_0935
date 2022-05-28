@@ -1,14 +1,15 @@
 package lighting;
 
 import primitives.Color;
+import primitives.Double3;
 import primitives.Point;
 import primitives.Vector;
 
 public class PointLight extends Light implements LightSource {
     private final Point position;
-    private double Kc=1d;
-    private double Kl=0d;
-    private double Kq=0d;
+    private Double3 Kc =Double3.ONE;
+    private Double3 Kl=Double3.ZERO;
+    private Double3 Kq = Double3.ZERO;
 
     public PointLight(Color intensity, Point position) {
         super(intensity);
@@ -18,7 +19,7 @@ public class PointLight extends Light implements LightSource {
     @Override
     public Color getIntensity(Point point) {
         Color Ic=intensity;
-        double factor=(Kc +Kl* point.distance(position) + Kq * point.distanceSquared(position) );
+        Double3 factor=(Kc.add(Kl.scale(point.distance(position))).add( Kq.scale(point.distanceSquared(position)) ));
         return Ic.reduce(factor);
     }
 
@@ -28,27 +29,35 @@ public class PointLight extends Light implements LightSource {
     }
 
     @Override
-    public double getDistance(Point pnt)
-    {
-        return pnt.distance(position);
+    public double getDistance(Point point) {
+        return point.distance(this.position);
     }
 
-    public PointLight setKl(double kl) {
-        this.Kl = kl;
+    public Double3 getKc() {
+        return Kc;
+    }
+
+    public PointLight setKc(double kc) {
+        this.Kc = new Double3(kc);
         return this;
     }
 
-    public double getKl() {
+    public PointLight setKl(double kl) {
+        this.Kl =  new Double3(kl);
+        return this;
+    }
+
+    public Double3 getKl() {
         return Kl;
     }
 
     public PointLight setKq(double kq) {
-        this.Kq = kq;
+        this.Kq = new Double3(kq);
         return this;
     }
 
 
-    public double getKq() {
+    public Double3 getKq() {
         return Kq;
     }
 }

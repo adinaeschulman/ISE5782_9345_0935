@@ -13,7 +13,7 @@ import static java.awt.Color.*;
 
 /**
  * Test rendering a basic image
- * 
+ *
  * @author Dan
  */
 public class RenderTests {
@@ -39,7 +39,7 @@ public class RenderTests {
 		Camera camera = new Camera(Point.ZERO, new Vector(0, 0, -1), new Vector(0, 1, 0)) //
 				.setVPDistance(100) //
 				.setVPSize(500, 500) //
-				.setImageWriter(new ImageWriter("base render test", 1000, 1000))				
+				.setImageWriter(new ImageWriter("base render test", 1000, 1000))
 				.setRayTracer(new RayTracerBasic(scene));
 
 		camera.renderImage();

@@ -44,7 +44,7 @@ public class FirstImage {
         scene1.getGeometries().add(sky);
 
         //SUN
-        Geometry sun=new Sphere(new Point(0,5,-80),85)
+        Geometry sun=new Sphere(new Point(20,50,-50),85)
                 .setEmission(new Color(255,255,0))
                 .setMaterial(new Material()
                         .setKd(0.0)

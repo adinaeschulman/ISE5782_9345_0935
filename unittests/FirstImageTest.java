@@ -17,7 +17,7 @@ import scene.Scene;
  * including grass, birds and the sun
  * using plane, sphere and triangles
  */
-public class FirstImage {
+public class FirstImageTest {
     @Test
     public void test()
     {

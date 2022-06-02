@@ -9,9 +9,7 @@ import primitives.*;
 import renderer.*;
 import scene.Scene;
 
-import java.io.CharArrayWriter;
-
-class finalImage {
+class FinalImageTest {
     // private Scene scene = new Scene.SceneBuilder("Test scene").build();
     @Test
     public void ourPicture(){

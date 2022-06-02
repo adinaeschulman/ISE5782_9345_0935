@@ -1,8 +1,7 @@
-import geometries.Intersectable;
 import geometries.Sphere;
 import lighting.PointLight;
 import lighting.SpotLight;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import primitives.Color;
 import primitives.Material;
 import primitives.Point;
@@ -13,9 +12,8 @@ import renderer.RayTracerBasic;
 import scene.Scene;
 
 import static java.awt.Color.BLUE;
-import static java.awt.Color.RED;
 
-public class Earth {
+public class EarthTest {
     @Test
     public void EarthPicture() {
 

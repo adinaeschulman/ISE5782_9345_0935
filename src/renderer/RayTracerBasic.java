@@ -69,14 +69,24 @@ public class RayTracerBasic extends RayTracerBase {
     /**
      * Implementation for the abstract method traceRay
      */
+
+    /**
+     * :TODO add comment
+     * @param rays
+     * @return
+     */
     @Override
-    public  Color traceRay(Ray ray) {
-        GeoPoint closestPoint = findClosestIntersection(ray);
-        Color color = scene.getBackground();
-        if (closestPoint != null) {
-            color = calcColor(closestPoint, ray);
+    public  Color traceRays(List<Ray> rays) {
+        Color sumColor = Color.BLACK;
+        for (Ray ray : rays) {
+            GeoPoint closestPoint = findClosestIntersection(ray);
+            if (closestPoint != null) {
+                sumColor = sumColor.add(calcColor(closestPoint, ray));
+            }else {
+                sumColor = sumColor.add(scene.getBackground());
+            }
         }
-        return color;
+        return sumColor.reduce(rays.size());
     }
     /**
      * Calculate the color of a certain point

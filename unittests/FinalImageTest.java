@@ -157,7 +157,9 @@ class FinalImageTest {
                         .setKl(0.00001).setKq(0.000005)
         );
         camera.setImageWriter(new ImageWriter("ourPicture", 1000, 1000)) //
-                .setRayTracer(new RayTracerBasic(scene)) //
+                // :TODO this how set the pixels amount
+              .setPixels(5, 5)
+              .setRayTracer(new RayTracerBasic(scene)) //
                 .renderImage(); //
         camera.writeToImage();
 

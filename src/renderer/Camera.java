@@ -1,4 +1,6 @@
 package renderer;
+import java.util.LinkedList;
+import java.util.List;
 import primitives.Color;
 import primitives.Point;
 import primitives.Ray;
@@ -19,6 +21,8 @@ public class Camera {
     private double distance;
     private ImageWriter imageWriter;
     private RayTracerBase rayTracer;
+    private int amountRowPixels;
+    private int amountColumnPixels;
 
     /**
      * constructor
@@ -33,6 +37,8 @@ public class Camera {
         this.v_t0 = v_t0.normalize();
         this.v_up = v_up.normalize();
         this.v_right = this.v_t0.crossProduct(this.v_up);
+        amountRowPixels = 0;
+        amountColumnPixels = 0;
     }
 
     /**
@@ -104,6 +110,18 @@ public class Camera {
     }
 
     /**
+     * :TODO add comment
+     * @param amountRowPixels
+     * @param amountColumnPixels
+     * @return
+     */
+    public Camera setPixels(int amountRowPixels, int amountColumnPixels){
+        this.amountRowPixels = amountRowPixels;
+        this.amountColumnPixels = amountColumnPixels;
+        return this;
+    }
+
+    /**
      * sets the distance of the view plane from the camera
      * @param distance the distance of the view plane from the camera
      * @return the distance of the view plane from the camera
@@ -143,6 +161,58 @@ public class Camera {
         }
         Pij = Pc.add(v_right.scale(Xj).add(v_up.scale(Yi)));
         return new Ray(P0, Pij.subtract(P0));
+    }
+
+    /**
+     * :TODO add comment
+     * @param nX
+     * @param nY
+     * @param j
+     * @param i
+     * @return
+     */
+    public List<Ray> constructRays(int nX, int nY, int j, int i) {
+        if (amountColumnPixels <= 0 || amountRowPixels <= 0){
+            return List.of(constructRay(nX, nY, j, i));
+        }
+        Point Pc = P0.add(v_t0.scale(distance));
+        List<Ray> rays = new LinkedList<>();
+        //ratio
+        double Ry = height / nY;
+        double Rx = width / nX;
+        double Yi = -(i-(nY-1)/2d)*Ry;
+        double Xj = (j-(nX-1)/2d)*Rx;
+        //Pixel[i,j] center:
+        Point Pij = Pc;
+
+        if (!isZero(Yi)) {
+            Pij = Pij.add(v_up.scale(Yi));
+        }
+        if (!isZero(Xj)) {
+            Pij = Pij.add(v_right.scale(Xj));
+        }
+
+        Ry = Ry / amountColumnPixels;
+        Rx = Rx / amountRowPixels;
+
+
+
+        for (int k = 0; k < amountRowPixels; k++) {
+            for (int l = 0; l < amountColumnPixels; l++) {
+                Point point = Pij;
+                double Yii = -(k-(amountColumnPixels-1)/2d)*Ry;
+                double Xjj = -(l-(amountRowPixels-1)/2d)*Rx;
+                if (!isZero(Yii)) {
+                    point = point.add(v_up.scale(Yii));
+                }
+                if (!isZero(Xjj)) {
+                    point = point.add(v_right.scale(Xjj));
+                }
+                rays.add(new Ray(P0, point.subtract(P0)));
+            }
+        }
+
+        return rays;
     }
 
     public Camera setImageWriter(ImageWriter imageWriter) {
@@ -188,8 +258,8 @@ public class Camera {
     }
 
     private void castRay(int nX, int nY, int i, int j) {
-        Ray ray = constructRay(nX, nY, j, i);
-        Color pixelColor = rayTracer.traceRay(ray);
+        List<Ray> rays = constructRays(nX, nY, j, i);
+        Color pixelColor = rayTracer.traceRays(rays);
         imageWriter.writePixel(j, i, pixelColor);
     }
 }

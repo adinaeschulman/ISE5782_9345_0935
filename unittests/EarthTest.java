@@ -42,6 +42,7 @@ public class EarthTest {
         );
 
         camera.setImageWriter(new ImageWriter("Earth", 1000, 1000)) //
+                .setPixels(100, 40)
                 .setRayTracer(new RayTracerBasic(scene)) //
                 .renderImage();
         camera.writeToImage();

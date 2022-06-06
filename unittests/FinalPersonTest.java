@@ -18,24 +18,24 @@ public class FinalPersonTest {
         Triangle triangle = new Triangle(new Point(-125, -225, -260)
                 , new Point(-225, -125, -260), new Point(-225, -225, -270));
         scene.getGeometries().add(triangle);
-        Geometry sphere = new Sphere(new Point(0.0, 0.0, -1000), 600).setEmission(new Color(0, 0, 255)).setMaterial(new Material().setKT(1).setShininess(20));
-        scene.getGeometries().add(sphere);
-        Geometry sphere2 = new Sphere(new Point(0.0, 0.0, -1000), 100).setEmission(new Color(0, 0, 0)).setMaterial(new Material().setKT(0).setShininess(1000));
-        scene.getGeometries().add(sphere2);
-        Geometry sphere3 = new Sphere(new Point(0.0, 0.0, -1000), 300).setEmission(new Color(102, 0, 102)).setMaterial(new Material().setKT(0).setShininess(20));
-        scene.getGeometries().add(sphere3);
+//        Geometry sphere = new Sphere(new Point(0.0, 0.0, -1000), 600).setEmission(new Color(0, 0, 255)).setMaterial(new Material().setKT(1).setShininess(20));
+//        scene.getGeometries().add(sphere);
+//      Geometry sphere2 = new Sphere(new Point(0.0, 0.0, -1000), 100).setEmission(new Color(0, 0, 0)).setMaterial(new Material().setKT(0).setShininess(1000));
+//        scene.getGeometries().add(sphere2);
+//        Geometry sphere3 = new Sphere(new Point(0.0, 0.0, -1000), 300).setEmission(new Color(102, 0, 102)).setMaterial(new Material().setKT(0).setShininess(20));
+//        scene.getGeometries().add(sphere3);
         scene.getLights().add(
                 new SpotLight(new Color(100, 100, 100), new Point(-200, -200, -150), new Vector(2, 2, -3)));
 
 
 
         //head
-        Geometry sphere4 = new Sphere(new Point(0.0, 0.0, -1000), 100).setEmission(new Color(0, 0, 255)).setMaterial(new Material().setKT(1).setShininess(20));
+        Geometry sphere4 = new Sphere(new Point(0.0, 0.0, -1000), 300).setEmission(new Color(0, 0, 255)).setMaterial(new Material().setKT(1).setShininess(20));
         scene.getGeometries().add(sphere4);
 
 
         //body
-        Geometry sphere5 = new Sphere(new Point(0.0, -600, -1000), 300).setEmission(new Color(0, 0, 255)).setMaterial(new Material().setKT(1).setShininess(20));
+        Geometry sphere5 = new Sphere(new Point(20, -600, -1000), 300).setEmission(new Color(0, 0, 255)).setMaterial(new Material().setKT(1).setShininess(20));
         scene.getGeometries().add(sphere5);
 
 
@@ -208,7 +208,7 @@ public class FinalPersonTest {
                 setEmission(new Color(0, 0, 255)).
                 setMaterial(new Material().setShininess(20).setKT(0));
         scene.getGeometries().add(sphere51);
-        Geometry sphere52 = new Sphere(new Point(160, -10800, -1000), 80).
+        Geometry sphere52 = new Sphere(new Point(160, -1080, -1000), 80).
                 setEmission(new Color(0, 0, 255)).
                 setMaterial(new Material().setShininess(20).setKT(0));
         scene.getGeometries().add(sphere52);
@@ -261,7 +261,7 @@ public class FinalPersonTest {
         Material m3 = new Material();
         m3.setKR(1);
         triangle3.setMaterial(m3);
-        scene.getGeometries().add(sphere);
+       // scene.getGeometries().add(sphere);
         scene.getGeometries().add(triangle1);
         scene.getGeometries().add(triangle2);
         scene.getGeometries().add(triangle3);
@@ -269,7 +269,7 @@ public class FinalPersonTest {
                 new SpotLight(new Color(100, 100, 100), new Point(-200, -200, -150),
                 new Vector(2, 2, -3)).setNarrowBeam(0.1).setKl(0.00001).setKq(0.000005));//not sure if the set narrowbeam and the set kq is accurate the
                                                                                                     //the values might have to be swaped
-        Camera camera = new Camera(new Point(0, 0, 1000), new Vector(0, 0, -1), new Vector(1, 0, 0))
+        Camera camera = new Camera(new Point(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0))
                 .setVPDistance(600).setVPSize(1000, 1000);
         camera.setImageWriter(new ImageWriter("blue person", 1000, 1000)) //
                 .setRayTracer(new RayTracerBasic(scene)) //

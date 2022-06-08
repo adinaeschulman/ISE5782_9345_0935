@@ -1,51 +1,73 @@
 package geometries;
 
-import primitives.Ray;
-import java.util.Collections;
-import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-public class Geometries extends Intersectable{
+import primitives.Ray;
 
-
-    private List<Intersectable> intersectables = new LinkedList<>();
+public  class Geometries extends Intersectable {
     /**
-     * constructor
-     * @param intersectables
+     * A list of geometries. (According to the composite design pattern)
      */
-    public Geometries(List<Intersectable> intersectables) {
-        this.intersectables = new LinkedList<>();
-    }
-    public Geometries(Intersectable... geos) {
-        add(geos);
-    }
+    private List<Intersectable> geometries;
 
-    public void add(Intersectable... geos) {
-        Collections.addAll(intersectables, geos);
-    }
     /**
-     * finds the intersections between the ray and the shapes.
-     * @param ray {@link Ray} pointing towards the object
-     * @return a list of intersections
+     * If true, then the geometries class will use AABB in the calculations, and vice versa.
      */
+    private boolean AABB = true;
 
-    @Override
+    /**
+     * Constructs a new instance with empty list of geometries.
+     */
+    public Geometries() {
+        this.geometries = new ArrayList<>(); // I used array list because of the constant access time.
+    }
+
+    /**
+     * Constructs a new instance with a collections of geometries.
+     *
+     * @param geometries The geometries to insert to the new instance.
+     */
+    public Geometries(Intersectable... geometries) {
+        this.geometries = Arrays.asList(geometries);
+    }
+
+    /**
+     * Add new geometries into the list
+     *
+     * @param geometries the new geometries to add
+     */
+    public void add(Intersectable... geometries) {
+        this.geometries.addAll(Arrays.asList(geometries));
+    }
+
+
+    /**
+     * Finds all the intersection points with geometries in our list
+     *
+     * @param ray The ray to check intersection points with.
+     * @return List of the geometric intersection points
+     */
     public List<GeoPoint> findGeoIntersectionsHelper(Ray ray, double maxDistance) {
-        List<GeoPoint> result = null;
-        for (Intersectable item : intersectables) {
-            //get intersections points of a particular item from intersectables
-            List<GeoPoint> itempoints = item.findGeoIntersections(ray);
-            if(itempoints!= null){
-                //first time initialize result to new LinkedList
-                if(result== null){
-                    result= new LinkedList<>();
-                }
-                //add all item points to the resulting list
-                result.addAll(itempoints);
+        ArrayList<GeoPoint> lst = new ArrayList<>();
+        for (Intersectable geometry : geometries) {
+            var points = geometry.findGeoIntersections(ray, maxDistance);
+            if (points != null) {
+                lst.addAll(points);
             }
         }
-        return result;
+
+        if (lst.size() == 0) return null;
+
+        return lst;
     }
 
+    /**
+     * @return The list of geometries.
+     */
+    public List<Intersectable> getGeometries() {
+        return geometries;
+    }
 
 }

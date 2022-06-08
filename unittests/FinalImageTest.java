@@ -14,7 +14,7 @@ class FinalImageTest {
     @Test
     public void ourPicture(){
         Scene scene = new Scene.SceneBuilder("Test scene")//
-                .setBackground(new Color(51,0,0)).build();
+                .setBackground(new Color(0,0,0)).build();
 
         Point A=new Point(-165,170,-300);
         Point B=new Point(-165,140,-300);
@@ -158,7 +158,7 @@ class FinalImageTest {
         );
         camera.setImageWriter(new ImageWriter("ourPicture", 1000, 1000)) //
                 // :TODO this how set the pixels amount
-              .setPixels(5, 5)
+              .setPixels(100, 100)
               .setRayTracer(new RayTracerBasic(scene)) //
                 .renderImage(); //
         camera.writeToImage();

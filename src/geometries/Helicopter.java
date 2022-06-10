@@ -10,8 +10,7 @@ public class Helicopter extends Geometries {
         private Point center;
         private double size;
 
-
-        private Color emission = new Color(75, 83, 32);
+    private Color emission = new Color(75, 83, 32);
         private Material material = new Material().setKd(0.15).setKs(0.5).setShininess(300);
 
         private Color emissionWings = new Color(71,66, 42);
@@ -20,6 +19,16 @@ public class Helicopter extends Geometries {
         private Color emissionTailTop = new Color(75, 83, 32);
         private Color emissionTail = new Color(75, 83, 32);
         private Material materialTail = new Material().setKd(0.1).setKs(0.5).setShininess(300);
+
+    public Helicopter setEmission(Color emission) {
+        this.emission = emission;
+        return this;
+    }
+
+    public Helicopter setMaterial(Material material) {
+        this.material = material;
+        return this;
+    }
 
         public Helicopter(Point center, double size) {
             super();

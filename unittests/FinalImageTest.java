@@ -1,7 +1,5 @@
 import org.junit.jupiter.api.Test;
-
 import static java.awt.Color.*;
-
 import renderer.ImageWriter;
 import lighting.*;
 import geometries.*;
@@ -157,7 +155,7 @@ class FinalImageTest {
                         .setKl(0.00001).setKq(0.000005)
         );
         camera.setImageWriter(new ImageWriter("ourPicture", 1000, 1000)) //
-                // :TODO this how set the pixels amount
+                //
               .setPixels(100, 100)
               .setRayTracer(new RayTracerBasic(scene)) //
                 .renderImage(); //

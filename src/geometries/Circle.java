@@ -13,17 +13,34 @@ public class Circle extends Geometry {
     Point center;
     double radius;
 
+    /**
+     * constructer
+     * @param center
+     * @param normal
+     * @param radius
+     */
     public Circle(Point center, Vector normal, double radius) {
         this.center = center;
         this.radius = radius;
         this.plane = new Plane(center, normal);
     }
 
+    /**
+     *
+     * @param point
+     * @return the normalized
+     */
     @Override
     public Vector getNormal(Point point) {
         return plane.getNormal(point);
     }
 
+    /**
+     *
+     * @param ray
+     * @param maxDistance
+     * @return
+     */
     @Override
     protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray, double maxDistance) {
         List<GeoPoint> geoPoints = plane.findGeoIntersectionsHelper(ray, maxDistance);

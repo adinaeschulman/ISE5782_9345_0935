@@ -71,7 +71,7 @@ public class RayTracerBasic extends RayTracerBase {
      */
 
     /**
-     * :TODO add comment
+     *
      * @param rays
      * @return
      */

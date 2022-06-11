@@ -110,7 +110,7 @@ public class Camera {
     }
 
     /**
-     * :TODO add comment
+     *
      * @param amountRowPixels
      * @param amountColumnPixels
      * @return
@@ -164,7 +164,7 @@ public class Camera {
     }
 
     /**
-     * :TODO add comment
+     *
      * @param nX
      * @param nY
      * @param j

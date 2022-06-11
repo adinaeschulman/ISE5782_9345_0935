@@ -23,7 +23,13 @@ public class Triangle extends Polygon{
                 ", plane=" + plane +
                 '}';
     }
-// have to come back to this not sure if we need a whole findintersection function for triangle
+
+    /**
+     *
+     * @param ray
+     * @param maxD
+     * @return finds the geometrics intersections
+     */
     @Override
     public List<GeoPoint> findGeoIntersectionsHelper(Ray ray, double maxD) {
         return super.findGeoIntersectionsHelper(ray,maxD);

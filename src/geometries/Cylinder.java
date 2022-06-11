@@ -27,6 +27,11 @@ public class Cylinder extends Tube {
         this.height = height;
     }
 
+    /**
+     *
+     * @param point
+     * @return normalized
+     */
     @Override
     public Vector getNormal(Point point) {
         double t = axisRay.getDir().dotProduct(point.subtract(axisRay.getP0()));
@@ -36,6 +41,12 @@ public class Cylinder extends Tube {
             return super.getNormal(point);
     }
 
+    /**
+     *
+     * @param ray
+     * @param maxDistance
+     * @return returns all the intersections
+     */
     @Override
     public List<GeoPoint> findGeoIntersectionsHelper(Ray ray, double maxDistance) {
         List<GeoPoint> res = new ArrayList<>();

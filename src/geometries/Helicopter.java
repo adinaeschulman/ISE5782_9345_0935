@@ -7,29 +7,43 @@ import static geometries.Utils.createRectangleY;
 import static geometries.Utils.createRectangleZ;
 
 public class Helicopter extends Geometries {
+
         private Point center;
         private double size;
-
-    private Color emission = new Color(75, 83, 32);
+        private Color emission = new Color(75, 83, 32);
         private Material material = new Material().setKd(0.15).setKs(0.5).setShininess(300);
-
         private Color emissionWings = new Color(71,66, 42);
         private Material materialWings = new Material().setKd(0.1).setKs(0.5).setShininess(300);
-
         private Color emissionTailTop = new Color(75, 83, 32);
         private Color emissionTail = new Color(75, 83, 32);
         private Material materialTail = new Material().setKd(0.1).setKs(0.5).setShininess(300);
 
+
+    /**
+     *
+     * @param emission
+     * @return emission
+     */
     public Helicopter setEmission(Color emission) {
         this.emission = emission;
         return this;
     }
 
+    /**
+     *
+     * @param material
+     * @return material
+     */
     public Helicopter setMaterial(Material material) {
         this.material = material;
         return this;
     }
 
+    /**
+     *
+     * @param center
+     * @param size
+     */
         public Helicopter(Point center, double size) {
             super();
             this.center = center;
@@ -37,7 +51,12 @@ public class Helicopter extends Geometries {
             this.add(createBody());
             this.add(createRotor());
         }
-        private Geometries createBody() {
+
+    /**
+     *
+     * @return makes the body of the helicopter
+     */
+    private Geometries createBody() {
             Geometries body = new Geometries();
             // Sphere cocpit;
             body.add(new Sphere(center, size * 5)
@@ -119,7 +138,11 @@ public class Helicopter extends Geometries {
             return body;
         }
 
-        private Geometries createRotor() {
+    /**
+     *
+     * @return makes rotor
+     */
+    private Geometries createRotor() {
             Geometries rotor = new Geometries();
             // Polygon mainRotorWingX;
             rotor.add(createRectangleY(center.add(new Vector(0, size * 5 + size, 0)), size * 20, size)

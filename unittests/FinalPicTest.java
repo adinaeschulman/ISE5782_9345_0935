@@ -108,7 +108,6 @@ class FinalPicTest {
 
         Vector lightsRadius = new Vector(60, 0, 0);
         double lightsSize = 3;
-
         for (int i = 0; i < 5; i++) {
             redLightsSurfaces.add(new Circle(new Point(0, -100 + 0.2, 0).add(lightsRadius.Roatate(72 * i, axisY)), axisY, lightsSize).setMaterial(new Material().setKs(0.0002).setKT(0.99)));
 
@@ -117,7 +116,7 @@ class FinalPicTest {
 
         ImageWriter imageWriter = new ImageWriter("final image", 1000, 1000);
         Camera camera = new Camera(new Point(300, 270, 300), new Vector(-1, -1, -1), new Vector(-1, 2, -1))
-                .setPixels(100, 100)//
+               // .setPixels(100, 100)//
                 .setVPSize(150, 150) //
                 .setVPDistance(300).setImageWriter(imageWriter);
 

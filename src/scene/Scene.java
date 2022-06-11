@@ -20,6 +20,11 @@ public class Scene {
     private final Geometries geometries;
     private final List<LightSource> lights;
 
+    /**
+     * the scene is the object that holds all of the geometries in the scene of teh camera
+     * the scene recievs a scene builder in order for it to build
+     * @param builder
+     */
     public Scene(SceneBuilder builder) {
 
         this.name = builder.name;
@@ -53,7 +58,9 @@ public class Scene {
         this.ambientLight=ambientLight;
     }
 
-
+    /**
+     * you can set the sciene only through using the object of scene builder
+     */
     public static class SceneBuilder {
         private List<LightSource> lights=new LinkedList<>();
         private final String name;
@@ -86,6 +93,10 @@ public class Scene {
             return this;
         }
 
+        /**
+         * returning the scene itself
+         * @return
+         */
         public Scene build() {
             return new Scene(this);
         }

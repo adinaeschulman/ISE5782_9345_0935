@@ -14,7 +14,7 @@ import scene.Scene;
  * including grass, birds and the sun
  * using plane, sphere and triangles
  */
-public class FirstImageTest {
+public class PartSevenTest {
     @Test
     public void test() {
 
@@ -113,7 +113,11 @@ public class FirstImageTest {
         ImageWriter imageWriter = new ImageWriter("sunnySky", 500, 500);
         camera1.setImageWriter(imageWriter) //
                 .setRayTracer(new RayTracerBasic(scene1)) //
-                .renderImage(); //
+                .renderImage()
+               // .setDebugPrint()
+           //     .setMultithreading(3)
+                .setVPDistance(1000);
+        ; //
         camera1.writeToImage(); //
     }
 }

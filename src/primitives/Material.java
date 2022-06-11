@@ -124,6 +124,10 @@ public class Material {
         return this;
     }
 
+    /**
+     *
+     * @return
+     */
     public Double3 getKd() {
         return kD;
     }
@@ -133,6 +137,10 @@ public class Material {
         return kS;
     }
 
+    /**
+     * the shininess of the pic
+     * @return
+     */
     public double getnShininess() {
         return  0;
     }

@@ -138,7 +138,7 @@ public class Ray {
         return result;
     }
     /**
-     *
+     * the closest intersections in a list form from type geopoint
      * @param intersections
      * @return
      */

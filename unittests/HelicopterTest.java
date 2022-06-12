@@ -117,7 +117,8 @@ class FinalPicTest {
         ImageWriter imageWriter = new ImageWriter("final image", 1000, 1000);
         Camera camera = new Camera(new Point(300, 270, 300), new Vector(-1, -1, -1), new Vector(-1, 2, -1))
                // .setPixels(100, 100)//
-                .setVPSize(150, 150) //
+                .setVPSize(150, 150)
+                .setDebugPrint().setMultithreading(3)//
                 .setVPDistance(300).setImageWriter(imageWriter);
 
         scene.getGeometries().add(constGeometries);

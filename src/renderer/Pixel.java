@@ -30,46 +30,46 @@ import renderer.Camera;
      */
     public Pixel() {
     }
-    /**
-     * Internal function for thread-safe manipulating of main follow up Pixel object
-     * - this function is critical section for all the threads, and main Pixel
-     * object data is the shared data of this critical section.<br/>
-     * The function provides next pixel number each call.
-     *
-     * @param target target secondary Pixel object to copy the row/column of the
-     *               next pixel
-     * @return the progress percentage for follow up: if it is 0 - nothing to print,
-     * if it is -1 - the task is finished, any other value - the progress
-     * percentage (only when it changes)
-     */
-    private synchronized int nextP(Pixel target) {
-        ++col;
-        ++this.counter;
-        if (col < this.maxCols) {
-            target.row = this.row;
-            target.col = this.col;
-            if (Camera.print && this.counter == this.nextCounter) {
-                ++this.percents;
-                this.nextCounter = this.pixels * (this.percents + 1) / 100;
-                return this.percents;
-            }
-            return 0;
-        }
-        ++row;
-        if (row < this.maxRows) {
-            col = 0;
-            target.row = this.row;
-            target.col = this.col;
-            if (Camera.print && this.counter == this.nextCounter) {
-                ++this.percents;
-                this.nextCounter = this.pixels * (this.percents + 1) / 100;
-                return this.percents;
-            }
-            return 0;
-        }
-        return -1;
-    }
 
+     /**
+      * Internal function for thread-safe manipulating of main follow up Pixel object
+      * - this function is critical section for all the threads, and main Pixel
+      * object data is the shared data of this critical section.<br/>
+      * The function provides next pixel number each call.
+      *
+      * @param target target secondary Pixel object to copy the row/column of the
+      *               next pixel
+      * @return the progress percentage for follow up: if it is 0 - nothing to print,
+      * if it is -1 - the task is finished, any other value - the progress
+      * percentage (only when it changes)
+      */
+     private synchronized int nextP(Pixel target) {
+         ++col;
+         ++this.counter;
+         if (col < this.maxCols) {
+             target.row = this.row;
+             target.col = this.col;
+             if (Camera.print && this.counter == this.nextCounter) {
+                 ++this.percents;
+                 this.nextCounter = this.pixels * (this.percents + 1) / 100;
+                 return this.percents;
+             }
+             return 0;
+         }
+         ++row;
+         if (row < this.maxRows) {
+             col = 0;
+             target.row = this.row;
+             target.col = this.col;
+             if (Camera.print && this.counter == this.nextCounter) {
+                 ++this.percents;
+                 this.nextCounter = this.pixels * (this.percents + 1) / 100;
+                 return this.percents;
+             }
+             return 0;
+         }
+         return -1;
+     }
     /**
      * Public function for getting next pixel number into secondary Pixel object.
      * The function prints also progress percentage in the console window.

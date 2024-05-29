@@ -1,4 +1,4 @@
-package unittests.renderer;
+package renderer;
 
 import lighting.AmbientLight;
 import org.junit.jupiter.api.Test;

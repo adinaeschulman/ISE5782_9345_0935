@@ -1,4 +1,4 @@
-package unittests;
+package renderer;
 
 import org.junit.jupiter.api.Test;
 import primitives.Color;

@@ -1,4 +1,4 @@
-package unittests.Lightning;
+package Lightning;
 
 import org.junit.jupiter.api.Test;
 

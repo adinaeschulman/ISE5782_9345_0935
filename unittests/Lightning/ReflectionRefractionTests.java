@@ -1,7 +1,7 @@
 /**
  * 
  */
-package unittests.renderer;
+package Lightning;
 
 import org.junit.jupiter.api.Test;
 
